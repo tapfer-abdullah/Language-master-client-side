@@ -2,6 +2,8 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import BtnOutLine from "../../Components/Buttons/BtnOutLine";
+import BtnSolid from "../../Components/Buttons/BtnSolid";
 
 
 const Header = () => {
@@ -67,8 +69,8 @@ const Header = () => {
   );
 
   return (
-    <div>
-      <div className="navbar bg-base-100">
+    <div className="text-white">
+      <div className="navbar bg-[black] max-w-7xl mx-auto fixed bg-opacity-50 px-2 md:px-5">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">

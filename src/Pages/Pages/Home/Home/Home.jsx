@@ -1,11 +1,14 @@
 import React from 'react';
 import CustomHelmet from '../../../../Components/Helmet/CustomHelmet';
+import HomeNumbers from '../HomeNumbers/HomeNumbers';
 
 const Home = () => {
     return (
-        <div>
+        <div className='pt-24'>
             <CustomHelmet>Home</CustomHelmet>
-            hjj
+            
+            <p>lorem5000</p>
+            <HomeNumbers></HomeNumbers>
         </div>
     );
 };
