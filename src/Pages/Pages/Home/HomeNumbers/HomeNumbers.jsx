@@ -26,7 +26,7 @@ const HomeNumbers = () => {
                 </div>
                 <div className='p-5 border bg-[black] bg-opacity-30 text-white'>
                     <BsWalletFill className='text-5xl mx-auto my-5'></BsWalletFill>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, voluptate.
+                    <p className='flex justify-center'><CountUp end={258} duration={5} className='text-5xl' /></p>
                     <p className={pStyle}>LANGUAGE TRAININGS</p>
                 </div>
                 <div className='p-5 border bg-[black] bg-opacity-30 text-white'>

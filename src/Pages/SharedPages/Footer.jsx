@@ -1,4 +1,6 @@
 import React from "react";
+import { FaMailBulk, FaPhoneAlt } from "react-icons/fa";
+import { BsMailbox2 } from "react-icons/bs";
 
 const Footer = () => {
   return (
@@ -38,9 +40,9 @@ const Footer = () => {
         </div>
         <div>
           <span className="footer-title">Contact Info</span>
-          <a className="link link-hover">+1800-001-658</a>
+          <a className="link link-hover flex items-center gap-1"><FaPhoneAlt/> <span>+1800-001-658</span></a>
           <a className="link link-hover">languagemaster@gmail.com</a>
-          <a className="link link-hover">Envato HQ 24 Fifth st., Los Angeles, USA</a>
+          <a className="link link-hover"> Envato HQ 24 Fifth st., Los Angeles, USA</a>
         </div>
       </footer>
 
