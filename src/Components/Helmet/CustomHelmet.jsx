@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
 
-const CustomHemet = ({children}) => {
+const CustomHelmet = ({children}) => {
   return (
     <Fragment>
       <Helmet>
@@ -11,4 +11,4 @@ const CustomHemet = ({children}) => {
   );
 };
 
-export default CustomHemet;
+export default CustomHelmet;

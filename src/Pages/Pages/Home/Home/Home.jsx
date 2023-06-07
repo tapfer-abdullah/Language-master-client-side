@@ -1,10 +1,10 @@
 import React from 'react';
-import CustomHemet from '../../../../Components/Helmet/CustomHemet';
+import CustomHelmet from '../../../../Components/Helmet/CustomHelmet';
 
 const Home = () => {
     return (
         <div>
-            <CustomHemet>Home</CustomHemet>
+            <CustomHelmet>Home</CustomHelmet>
             hjj
         </div>
     );
