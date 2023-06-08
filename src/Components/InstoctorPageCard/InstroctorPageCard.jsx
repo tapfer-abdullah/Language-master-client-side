@@ -70,7 +70,7 @@ const InstroctorPageCard = ({language}) => {
 
           <h2 className="card-title flex justify-between"><span>{name}</span> <span className="text-my-primary">{role}</span></h2>
           <h2 className="flex items-center gap-1 text-base"><FiMail className="text-my-primary"></FiMail><span className="text-my-p">{email}</span></h2>
-          <p className="text-my-p">{details}</p>
+          {/* <p className="text-my-p">{details}</p> */}
 
 
         </div>
