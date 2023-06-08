@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./AuthProvider";
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ const Login = () => {
   const from = location.state?.path || location.state?.pathname || "/";
 
 //   const [disable, setDisable] = useState(true);
-  const { user, Login } = useContext(AuthContext);
+  const { user, Login, LoginWithGoogle } = useContext(AuthContext);
   const [errorM, setErrorM] = useState("");
 
   const handleLogin = (e) => {
@@ -45,6 +46,20 @@ const Login = () => {
         console.log(err)
     });
   };
+
+
+  const handleGoogle = ()=>{
+    LoginWithGoogle()
+    .then((result)=>{
+        alert("Successful")
+        console.log(result)
+        navigate(from);
+    })
+    .catch(err =>{
+        console.log(err)
+        setErrorM(err.message)
+    })
+  }
 
 
   return (
@@ -95,13 +110,16 @@ const Login = () => {
                     Login
                   </button>
                 </div>
-                <p className="text-[#D1A054] text-center my-2">
+                <p className="text-my-secondary text-center my-2">
                   Don't have an account?
                   <Link to="/register" className="ml-1 hover:link">
                     Register
                   </Link>
                 </p>
+                <div className="divider uppercase">Or Sing in with</div>
+                <Link onClick={handleGoogle} className="btn btn-circle btn-outline text-center text-my-secondary hover:text-white hover:bg-my-primary hover:border-my-primary mx-auto"><FaGoogle></FaGoogle> </Link>
               </div>
+              
             </div>
           </form>
         </div>

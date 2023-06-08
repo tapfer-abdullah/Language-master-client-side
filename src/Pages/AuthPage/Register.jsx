@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider";
 import Swal from "sweetalert2";
+import { FaGoogle } from "react-icons/fa";
 
 const Register = () => {
   const [passwordError, setPasswordError] = useState("");
@@ -11,12 +13,14 @@ const Register = () => {
   const [emptyE, setEmptyE] = useState(true);
   const [btnDisable, setBtnDisable] = useState(true);
 
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { Register, UpdateUser } = useContext(AuthContext);
+  const { Register, UpdateUser, LoginWithGoogle } = useContext(AuthContext);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -35,7 +39,7 @@ const Register = () => {
 
       UpdateUser(data.name, data.photoUrl)
       .then(()=>{
-        alert("kjkj")
+        alert("Register success")
         Swal.fire({
           title: `Registration successful! Thanks, ${data.name}`,
           showClass: {
@@ -45,6 +49,7 @@ const Register = () => {
             popup: 'animate__animated animate__fadeOutUp'
           }
         })
+        navigate("/");
       })
       .catch("Unable to update profile!")
     })
@@ -53,6 +58,19 @@ const Register = () => {
       setPasswordError(error.message)
     })
   };
+
+  const handleGoogle = ()=>{
+    LoginWithGoogle()
+    .then((result)=>{
+        alert("Successful")
+        console.log(result)
+        navigate("/");
+    })
+    .catch(err =>{
+        console.log(err)
+        setPasswordError(err.message)
+    })
+  }
 
   const handleEmail = (event) => {
     if (event.target.value) {
@@ -242,6 +260,9 @@ const Register = () => {
                     Log in
                   </Link>
                 </p>
+                <div className="divider uppercase">Or Sing in with</div>
+                <Link onClick={handleGoogle} className="btn btn-circle btn-outline text-center text-my-secondary hover:text-white hover:bg-my-primary hover:border-my-primary mx-auto"><FaGoogle></FaGoogle> </Link>
+              
               </div>
             </div>
           </form>
