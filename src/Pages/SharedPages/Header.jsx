@@ -8,7 +8,7 @@ import BtnSolid from "../../Components/Buttons/BtnSolid";
 
 const Header = () => {
 
-  const user = "ccc";
+  const user = "";
   // console.log(user)
   const handleLogout = () =>{
     Logout()

@@ -20,6 +20,7 @@ export default {
       'my-primary': '#ff5161',
       'my-secondary': '#f98f27',
       'my-p': '#8B8A99',
+      'red-600': '#ff5161',
 
     },
   },
