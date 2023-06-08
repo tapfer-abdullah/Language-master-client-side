@@ -1,93 +1,89 @@
-import React, { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "./AuthProvider";
 import Swal from "sweetalert2";
 
 const Register = () => {
-
-    const [passwordError, setPasswordError] = useState("");
-    const [emptyP, setEmptyP] = useState(true);
-    const [emptyCP, setEmptyCP] = useState(true);
-    const [emptyE, setEmptyE] = useState(true);
-    const [btnDisable, setBtnDisable] = useState(true);
+  const [passwordError, setPasswordError] = useState("");
+  const [emptyP, setEmptyP] = useState(true);
+  const [emptyCP, setEmptyCP] = useState(true);
+  const [emptyE, setEmptyE] = useState(true);
+  const [btnDisable, setBtnDisable] = useState(true);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
-  //   const {Register, UpdateUser} = useContext(AuthContext);
-  const { Register, UpdateUser } = { Register: null, UpdateUser: null };
+  const { Register, UpdateUser } = useContext(AuthContext);
 
   const onSubmit = (data) => {
-    console.log("dd");
     console.log(data);
 
-    if(data.password !== data.confirmPassword){
-        setPasswordError("Password and Confirm password does not match!");
-        return
-    }
-    else{
-        setPasswordError('');
+    if (data.password !== data.confirmPassword) {
+      setPasswordError("Password and Confirm password does not match!");
+      return;
+    } else {
+      setPasswordError("");
     }
 
-    // Register(data.email, data.password)
-    // .then(result => {
-    //   const loggedUser = result.user;
+    Register(data.email, data.password)
+    .then(result => {
+      const loggedUser = result.user;
+      console.log(loggedUser)
 
-    //   UpdateUser(data.name, data.photoUrl)
-    //   .then(()=>{
-    //     Swal.fire({
-    //       title: `Registration successful! Thanks, ${data.name}`,
-    //       showClass: {
-    //         popup: 'animate__animated animate__fadeInDown'
-    //       },
-    //       hideClass: {
-    //         popup: 'animate__animated animate__fadeOutUp'
-    //       }
-    //     })
-    //   })
-    //   .catch("Unable to update profile!")
-    // })
-    // .catch(error => {
-    //   console.log(error)
-    // })
+      UpdateUser(data.name, data.photoUrl)
+      .then(()=>{
+        alert("kjkj")
+        Swal.fire({
+          title: `Registration successful! Thanks, ${data.name}`,
+          showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+          }
+        })
+      })
+      .catch("Unable to update profile!")
+    })
+    .catch(error => {
+      console.log(error)
+      setPasswordError(error.message)
+    })
   };
 
-  const handleEmail = event =>{
-    if(event.target.value){
-        setEmptyE(false);
+  const handleEmail = (event) => {
+    if (event.target.value) {
+      setEmptyE(false);
+    } else {
+      setEmptyE(true);
     }
-    else{
-        setEmptyE(true);
+  };
+  const handlePassword = (event) => {
+    if (event.target.value) {
+      setEmptyP(false);
+    } else {
+      setEmptyP(true);
     }
-  }
-  const handlePassword = event =>{
-    if(event.target.value){
-        setEmptyP(false);
+  };
+  const handleCPassword = (event) => {
+    if (event.target.value) {
+      setEmptyCP(false);
+    } else {
+      setEmptyCP(true);
     }
-    else{
-        setEmptyP(true);
-    }
-  }
-  const handleCPassword = event =>{
-    if(event.target.value){
-        setEmptyCP(false);
-    }
-    else{
-        setEmptyCP(true);
-    }
-  }
+  };
 
-  useEffect(()=>{
-    console.log(emptyE == true && emptyP== true && emptyCP== true)
-    if(emptyE == true && emptyP== true && emptyCP== true){
-        setBtnDisable(!false);
-    }else{
-
-        setBtnDisable(!true)
+  useEffect(() => {
+    console.log(emptyE == true && emptyP == true && emptyCP == true);
+    if (emptyE == true && emptyP == true && emptyCP == true) {
+      setBtnDisable(!false);
+    } else {
+      setBtnDisable(!true);
     }
-  }, [emptyE, emptyP, emptyCP])
+  }, [emptyE, emptyP, emptyCP]);
 
   return (
     <div className="flex justify-center items-center">
@@ -226,11 +222,14 @@ const Register = () => {
                       Password should be between 6 to 32 characters is required
                     </span>
                   )}
-                  {passwordError && <span className="text-red-600 my-2">{passwordError}</span>}
+                  {passwordError && (
+                    <span className="text-red-600 my-2">{passwordError}</span>
+                  )}
                 </div>
 
                 <div className="form-control mt-6">
-                  <input disabled={btnDisable}
+                  <input
+                    disabled={btnDisable}
                     className="btn bg-[#cd9b50] border-none"
                     type="submit"
                     value="Register"

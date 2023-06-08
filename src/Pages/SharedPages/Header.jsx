@@ -4,11 +4,12 @@ import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import BtnOutLine from "../../Components/Buttons/BtnOutLine";
 import BtnSolid from "../../Components/Buttons/BtnSolid";
+import { AuthContext } from "../AuthPage/AuthProvider";
 
 
 const Header = () => {
+const {user, Logout} = useContext(AuthContext);
 
-  const user = "";
   // console.log(user)
   const handleLogout = () =>{
     Logout()
@@ -117,7 +118,7 @@ const Header = () => {
              src={user?.photoURL} alt="userImg" />
               <Link
               onClick={handleLogout}
-                // to="/login"
+                to="/login"
                 className="btn btn-outline hover:bg-my-primary hover:border-my-primary text-my-secondary border-my-secondary"
               >
                 Log out
