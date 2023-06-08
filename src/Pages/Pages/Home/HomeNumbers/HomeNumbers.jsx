@@ -10,7 +10,7 @@ const HomeNumbers = () => {
     const pStyle = 'uppercase text-base text-center font-semibold my-4';
 
     return (
-        <div className='py-20 px-10 bgImg'>
+        <div className='py-20 px-10 my-20 bgImg'>
             <h3 className='text-3xl text-white text-center mb-10'>Language School In Number</h3>
 
             <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>

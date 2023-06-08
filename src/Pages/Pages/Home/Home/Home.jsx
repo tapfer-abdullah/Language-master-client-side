@@ -2,16 +2,19 @@ import React from 'react';
 import CustomHelmet from '../../../../Components/Helmet/CustomHelmet';
 import HomeNumbers from '../HomeNumbers/HomeNumbers';
 import Banner from '../Banner/Banner';
-import PopularClasses from '../PopularClasses/PopularClasses';
+import PopularInstructors from '../PopularInstructors/PopularInstructors';
+import LanguageCourses from '../LanguageCourses/LanguageCourses';
+import PopularCourses from '../PopularCourses/PopularCourses';
 
 const Home = () => {
     return (
-        <div className='pt-24'>
+        <div className=''>
             <CustomHelmet>Home</CustomHelmet>
             <Banner></Banner>
-            <PopularClasses></PopularClasses>
-            
+            <PopularCourses></PopularCourses>
             <HomeNumbers></HomeNumbers>
+            <LanguageCourses></LanguageCourses>
+            <PopularInstructors></PopularInstructors>
         </div>
     );
 };

@@ -19,6 +19,8 @@ export default {
       'bermuda': '#78dcca',
       'my-primary': '#ff5161',
       'my-secondary': '#f98f27',
+      'my-p': '#8B8A99',
+
     },
   },
   plugins: [require("daisyui")],

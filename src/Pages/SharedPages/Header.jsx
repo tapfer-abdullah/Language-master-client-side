@@ -70,7 +70,7 @@ const Header = () => {
 
   return (
     <div className="text-white">
-      <div className="navbar bg-[black] max-w-7xl mx-auto fixed bg-opacity-50 px-2 md:px-5">
+      <div className="navbar bg-[black] max-w-7xl mx-auto fixed bg-opacity-50 px-2 md:px-5 z-10">
         <div className="navbar-start">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
