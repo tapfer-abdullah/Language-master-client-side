@@ -4,7 +4,7 @@ const MySelectedClasses = () => {
     return (
         <div>
             <div className="overflow-x-auto">
-  <table className="table w-[70vw] mx-5">
+  <table className="table w-[65vw] mx-5">
     {/* head */}
     <thead className='rounded-lg'>
       <tr className='bg-my-secondary rounded-lg'>

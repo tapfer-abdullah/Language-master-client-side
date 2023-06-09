@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
+import Swal from "sweetalert2";
 import CustomHelmet from "../../../Components/Helmet/CustomHelmet";
 import LanguagePlanCart from "../../../Components/LanguagePlanCart/LanguagePlanCart";
 import PageBanner from "../../../Components/PageBanner/PageBanner";
 import { useQuery } from "@tanstack/react-query";
 import { RotatingLines } from "react-loader-spinner";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../AuthPage/AuthProvider";
 
 const Classes = () => {
+  const { user } = useContext(AuthContext);
+
   const { isLoading, isError, data, error, refetch } = useQuery({
     queryKey: ["instructor"],
     queryFn: async () => {
@@ -14,6 +20,10 @@ const Classes = () => {
       return res.json();
     },
   });
+
+  const location = useLocation();
+  // console.log(location.pathname)
+  const navigate = useNavigate();
 
   if (isLoading) {
     return (
@@ -30,6 +40,39 @@ const Classes = () => {
   }
   // console.log(data);
 
+  const select = (data) => {
+    // console.log(id);
+    if (!user) {
+      const isConfirm = confirm(
+        "You are not sing in yet! Sing in to select it."
+      );
+
+      if (isConfirm) {
+        navigate("/login", { state: location, replace: true });
+        return
+      }
+    }
+
+    const {name, price, availableSeats, instructor, instructorMail} = data;
+      const cart = {email: user.email, courseName:name, price, availableSeats, instructor, instructorMail}
+      console.log(cart)
+
+      fetch(`http://localhost:5000/course/${user.email}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cart),
+      })
+      .then(res => res.json())
+      .then(d => {
+        console.log(d)
+        if(d.insertedId){
+          alert("Added successfully")
+        }
+      })
+  };
+
   return (
     <div>
       <CustomHelmet>Courses</CustomHelmet>
@@ -43,7 +86,11 @@ const Classes = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-10">
         {data?.map((d) => (
-          <LanguagePlanCart key={d._id} data={d}></LanguagePlanCart>
+          <LanguagePlanCart
+            key={d._id}
+            data={d}
+            select={select}
+          ></LanguagePlanCart>
         ))}
       </div>
     </div>

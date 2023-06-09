@@ -18,32 +18,9 @@ const banImg = "https://flagdownload.com/wp-content/uploads/Flag_of_Bangladesh_F
 const noImg = "https://i.ibb.co/DwfmK4q/depositphotos-86009122-stock-photo-languages-signpost.webp"
 
 
-const LanguagePlanCart = ({data}) => {
+const LanguagePlanCart = ({data, select}) => {
   // console.log(data)
-  const {name, language, price, image, availableSeats, instructor} = data;
-  // const {
-  //   name,
-  //   language,
-  //   price,
-  //   img,
-
-  //   flag,
-  //   title,
-  //   availableSeat,
-  // } = {
-  //   name: "ABBBBBBBB",
-  //   language: "English",
-  //   price: 150,
-  //   availableSeat: 50,
-  //   details:
-  //     "Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
-  //   lesson: 20,
-  //   students: 1500,
-  //   rating: 4.5,
-  //   title: "English for beginner",
-  //   img: "https://images.healthshots.com/healthshots/en/uploads/2020/12/08182549/positive-person.jpg",
-  //   flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg/1024px-Flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png",
-  // };
+  const {_id, name, language, price, image, availableSeats, instructor} = data;
 
   let photo;
   if(name == "English"){
@@ -103,7 +80,7 @@ const LanguagePlanCart = ({data}) => {
           <div className="divider"></div>
 
           <div className="flex justify-center items-center">
-            <BtnSolid cStyle={`btn-sm`} destination={`/`}>
+            <BtnSolid clicked={select} _id={data} cStyle={`btn-sm`} destination={``}>
               Select
             </BtnSolid>
           </div>
