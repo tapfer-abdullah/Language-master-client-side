@@ -6,6 +6,9 @@ import Login from "../AuthPage/Login";
 import Register from "../AuthPage/Register";
 import Instructor from "../Pages/Instructor/Instructor";
 import Classes from "../Pages/Classes/Classes";
+import Dashboard from "../Layouts/Dashboard/Dashboard";
+import DashBoardContent from "../Pages/DashBoardContent/DashBoardContent";
+import MySelectedClasses from "../Pages/DashBoardContent/MySelectedClasses/MySelectedClasses";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +38,24 @@ const router = createBrowserRouter([
         }
     ]
   },
+  {
+    path: "/dashboard",
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <DashBoardContent></DashBoardContent>
+      },
+      {
+        path: "my-selected-classes",
+        element: <MySelectedClasses></MySelectedClasses>
+      },
+      {
+        path: "/dashboard/my-enrolled-classes",
+        element: <p>ee</p>
+      }
+    ]
+  }
 ]);
 
 export default router;

@@ -26,7 +26,7 @@ const PopularInstructors = () => {
   return (
     <>
       <div className="mt-20 mb-10 text-center w-9/12 md:w-1/2 mx-auto">
-        <h3 className="text-3xl font-semibold mb-5">Popular Courses</h3>
+        <h3 className="text-3xl font-semibold mb-5">Popular Instructors</h3>
         <p>
           Take courses from the world's best instructors and universities.
           Courses include recorded auto-graded and peer-reviewed assignments,
