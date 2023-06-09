@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from "react";
 import BtnSolid from "../Buttons/BtnSolid";
@@ -13,62 +14,24 @@ const frnImg = "https://i.ibb.co/k0Xwh6J/Flag-of-France.png";
 const sdaImg = "https://i.ibb.co/HnhdhSj/Flag-of-Saudi-Arabia-svg.png";
 const noImg = "https://i.ibb.co/DwfmK4q/depositphotos-86009122-stock-photo-languages-signpost.webp"
 
-const InstroctorPageCard = ({language}) => {
-  const {
-    name,
-    email,
-    role,
-    details,
-    img,
-    flag,
-  } = {
-    name: "Abdullah",
-    email: "akdsjafkfjjdsj@jklajsdl",
-    role: "Teacher",
-    details:
-      "Lorem ipsum dolor sit amet, consectetur adip elit, sed do eiusmod tempor incididunt ut labore et dolore magna",
-    img: "https://images.healthshots.com/healthshots/en/uploads/2020/12/08182549/positive-person.jpg",
-    flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg/1024px-Flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png",
-  };
-
-  let photo;
-  if(language == "English"){
-    photo = engImg
-  }
-  else if(language == "French"){
-    photo = frnImg
-  }
-  else if(language == "Spanish"){
-    photo = spnImg
-  }
-  else if(language == "German"){
-    photo = gerImg
-  }
-  else if(language == "China"){
-    photo = chnImg
-  }
-  else if(language == "Arabic"){
-    photo = sdaImg
-  }
-  else{
-    photo = noImg
-  }
+const InstroctorPageCard = ({data}) => {
+  const { name, photo, email, designation} = data;
 
 
   return (
     <div className="my-4">
       <div className="card w-96 bg-base-100 shadow-xl relative mx-auto">
         <figure className="px-5 pt-5">
-          <img src={img} alt="Language Plan" className="rounded-md" />
+          <img src={photo} alt="Language Plan" className="rounded-md" />
         </figure>
         <div className="card-body relative">
           <img
-            src={photo}
+            src={noImg}
             className="border-4 border-white w-12 h-12 rounded-full absolute -top-6 right-16"
             alt=""
           />
 
-          <h2 className="card-title flex justify-between"><span>{name}</span> <span className="text-my-primary">{role}</span></h2>
+          <h2 className="card-title flex justify-between"><span>{name}</span> <span className="text-my-primary">{designation}</span></h2>
           <h2 className="flex items-center gap-1 text-base"><FiMail className="text-my-primary"></FiMail><span className="text-my-p">{email}</span></h2>
           {/* <p className="text-my-p">{details}</p> */}
 

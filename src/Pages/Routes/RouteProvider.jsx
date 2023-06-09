@@ -5,6 +5,7 @@ import PageNotFound from "../Pages/PageNotFound/PageNotFound";
 import Login from "../AuthPage/Login";
 import Register from "../AuthPage/Register";
 import Instructor from "../Pages/Instructor/Instructor";
+import Classes from "../Pages/Classes/Classes";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +23,7 @@ const router = createBrowserRouter([
         },
         {
             path: "/classes",
-            element: <Home></Home>
+            element: <Classes></Classes>
         },
         {
           path: "/login",

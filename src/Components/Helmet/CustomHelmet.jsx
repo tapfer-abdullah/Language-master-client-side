@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
 
