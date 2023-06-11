@@ -4,8 +4,14 @@ import React from 'react';
 import BtnOutLine from '../../../../Components/Buttons/BtnOutLine';
 import BtnSolid from '../../../../Components/Buttons/BtnSolid';
 
-const MySelectedTable = ({data, index, handleDelete}) => {
+const MySelectedTable = ({data, index, handleDelete, payment}) => {
     const {courseName, price, availableSeats, instructor, instructorMail} = data;
+
+    let disabled = false;
+    if(payment == "Paid"){
+      disabled= true;
+    }
+
     return (
         <>
         <tr>
@@ -22,10 +28,10 @@ const MySelectedTable = ({data, index, handleDelete}) => {
 
               <td className=''>${price}</td>
               <th>
-                <BtnOutLine cStyle={`btn-sm`} destination={``}>Pay</BtnOutLine>
+                <BtnOutLine disabled={disabled} cStyle={`btn-sm disabled`} destination={``}>{payment}</BtnOutLine>
               </th>
               <th>
-                <BtnSolid cStyle={`btn-sm`} clicked={handleDelete} _id={data._id} destination={``}>Delete</BtnSolid>
+                <BtnSolid disabled={disabled} cStyle={`btn-sm`} clicked={handleDelete} _id={data._id} destination={``}>Delete</BtnSolid>
               </th>
             </tr>
         </>

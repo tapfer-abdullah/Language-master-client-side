@@ -1,14 +1,16 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useContext } from 'react';
 import MySelectedTable from '../MySelectedClasses/MySelectedTable';
+import { AuthContext } from '../../../AuthPage/AuthProvider';
 
 const MyEnrolledClasses = () => {
+  const {user, loading} = useContext(AuthContext);
     const { isLoading, error, data, refetch } = useQuery({
         queryKey: ['repoData'],
         queryFn: () =>
-          fetch('http://localhost:5000/my-selected-course').then(
+          fetch(`http://localhost:5000/my-selected-course?email=${user?.email}&status=paid`).then(
             (res) => res.json(),
           ),
       })
@@ -23,7 +25,7 @@ const MyEnrolledClasses = () => {
         <h3 className="text-3xl font-semibold mb-5">My Enrolled Courses</h3>
       </div>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto mb-20">
         <table
          className="table w-[65vw] mx-5">
           {/* head */}
@@ -41,7 +43,7 @@ const MyEnrolledClasses = () => {
           <tbody>
             {/* row 1 */}
             {
-                data.map(d => <MySelectedTable index={data.indexOf(d)} key={d._id} data={d}></MySelectedTable>)
+                data?.map(d => <MySelectedTable index={data.indexOf(d)} payment={`Paid`} key={d._id} data={d}></MySelectedTable>)
             }
           </tbody>
         </table>

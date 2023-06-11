@@ -54,7 +54,7 @@ const Classes = () => {
     }
 
     const {name, price, availableSeats, instructor, instructorMail} = data;
-      const cart = {email: user.email, courseName:name, price, availableSeats, instructor, instructorMail}
+      const cart = {email: user.email, courseName:name, price, availableSeats, instructor, instructorMail, status: "unpaid"}
       console.log(cart)
 
       fetch(`http://localhost:5000/course/${user.email}`, {
