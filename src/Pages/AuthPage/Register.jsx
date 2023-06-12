@@ -7,6 +7,8 @@ import Swal from "sweetalert2";
 import { FaGoogle } from "react-icons/fa";
 
 const Register = () => {
+  const [seePass, setSeePass] = useState(true);
+
   const [passwordError, setPasswordError] = useState("");
   const [emptyP, setEmptyP] = useState(true);
   const [emptyCP, setEmptyCP] = useState(true);
@@ -142,7 +144,7 @@ const Register = () => {
   };
 
   useEffect(() => {
-    console.log(emptyE == true && emptyP == true && emptyCP == true);
+    // console.log(emptyE == true && emptyP == true && emptyCP == true);
     if (emptyE == true && emptyP == true && emptyCP == true) {
       setBtnDisable(!false);
     } else {
@@ -231,7 +233,7 @@ const Register = () => {
                         /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{6,}$/i,
                     })}
                     name="password"
-                    type="password"
+                    type={`${seePass ? "password" : "text"}`}
                     placeholder="password"
                     className="input input-bordered"
                   />
@@ -267,11 +269,18 @@ const Register = () => {
                         /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[#?!@$%^&*-]).{6,}$/i,
                     })}
                     name="confirmPassword"
-                    type="password"
+                    type={`${seePass ? "password" : "text"}`}
                     placeholder="Confirm Password"
                     className="input input-bordered"
                   />
-                  {/* {console.log(errors)} */}
+                  
+                  {
+                    seePass && <span className="my-1 text-xs mx-2" onClick={()=> setSeePass(!seePass)}>See password</span>
+                  }
+                  {
+                    !seePass && <span className="my-1 text-xs mx-2" onClick={()=> setSeePass(!seePass)}>Hide password</span>
+                  }
+
                   {errors.confirmPassword?.type == "required" && (
                     <span className="text-red-600 my-2">
                       Password is required

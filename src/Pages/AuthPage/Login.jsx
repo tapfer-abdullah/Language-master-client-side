@@ -9,6 +9,7 @@ import { AuthContext } from "./AuthProvider";
 import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
+  const [seePass, setSeePass] = useState(true);
   const navigate = useNavigate();
   const location = useLocation();
   console.log(location);
@@ -116,12 +117,18 @@ const Login = () => {
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                    type="password"
+                    type={`${seePass ? "password" : "text"}`}
                     name="password"
                     placeholder="password"
                     className="input input-bordered"
                   />
                 </div>
+                {
+                    seePass && <span className="my-1 text-xs mx-2" onClick={()=> setSeePass(!seePass)}>See password</span>
+                  }
+                  {
+                    !seePass && <span className="my-1 text-xs mx-2" onClick={()=> setSeePass(!seePass)}>Hide password</span>
+                  }
                 {errorM && <p className="text-my-primary">{errorM}</p>}
 
                 <div className="form-control mt-6">
