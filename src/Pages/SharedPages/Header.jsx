@@ -7,11 +7,17 @@ import BtnSolid from "../../Components/Buttons/BtnSolid";
 import { AuthContext } from "../AuthPage/AuthProvider";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../Components/Hooks/useCart";
+import useUser from "../../Components/Hooks/useUser";
 
 const Header = () => {
   const { user, Logout } = useContext(AuthContext);
   const [cart] = useCart();
-  console.log("header", cart);
+  // console.log("header", cart);
+
+  const [loggedUser] = useUser();
+
+  const show = (loggedUser?.designation == 'Student')
+  // console.log(show)
 
   // console.log(user)
   const handleLogout = () => {
@@ -99,20 +105,20 @@ const Header = () => {
             >
               {menu}
               {user && conditionalMenu}
-              {user && (
-                 <NavLink
-                 to="/dashboard/my-selected-classes"
-                   className={({ isActive }) =>
-                     isActive
-                       ? "text-[black] bg-white text-lg font-semibold btn bg-transparent"
-                       : "btn bg-transparent hover:text-[black] text-white"
-                   }
-                   //  className="btn bg-transparent hover:text-[black] text-white"
-                 >
-                   <FaShoppingCart className=" "></FaShoppingCart>
-                   <div className="badge badge-secondary">{cart?.length}</div>
-                 </NavLink>
-              )}
+              {show && (
+              <NavLink
+              to="/dashboard/my-selected-classes"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[black] bg-white text-lg font-semibold btn bg-transparent"
+                    : "btn bg-transparent hover:text-[black] text-white"
+                }
+                //  className="btn bg-transparent hover:text-[black] text-white"
+              >
+                <FaShoppingCart className=" "></FaShoppingCart>
+                <div className="badge badge-secondary">{cart?.length || 0}</div>
+              </NavLink>
+            )}
             </ul>
           </div>
           <Link
@@ -127,7 +133,7 @@ const Header = () => {
           <ul className="flex items-center menu menu-horizontal px-1 text-base font-semibold">
             {menu}
             {user && conditionalMenu}
-            {user && (
+            {show && (
               <NavLink
               to="/dashboard/my-selected-classes"
                 className={({ isActive }) =>
@@ -138,7 +144,7 @@ const Header = () => {
                 //  className="btn bg-transparent hover:text-[black] text-white"
               >
                 <FaShoppingCart className=" "></FaShoppingCart>
-                <div className="badge badge-secondary">{cart?.length}</div>
+                <div className="badge badge-secondary">{cart?.length || 0}</div>
               </NavLink>
             )}
             {/* {conditionalMenu} */}

@@ -24,26 +24,6 @@ const InstructorClasses = () => {
       />
     );
 
-  const handleUpdate = (id) => {
-    // console.log(id)
-    UpdateClass(id)
-
-    // fetch(`http://localhost:5000/class/${id}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(info),
-    // })
-    //   .then((res) => res.json())
-    //   .then((d) => {
-    //     console.log(d);
-    //     if (d.modifiedCount) {
-    //       refetch();
-    //       alert("Role updated successfully");
-    //     }
-    //   });
-  };
 
   console.log(feedback)
 

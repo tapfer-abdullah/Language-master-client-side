@@ -12,10 +12,10 @@ const PrivateUser = ({children}) => {
     const location = useLocation();
     // console.log(location);
 
-    const [loggedUser] = useUser();
+    const [loggedUser, , isLoading] = useUser();
     console.log(loggedUser)
 
-    if(loading){
+    if(loading ||isLoading){
         return <div className="flex justify-center items-center mt-20 min-h-[45vh]">
         <RotatingLines
           strokeColor="#ff5161"

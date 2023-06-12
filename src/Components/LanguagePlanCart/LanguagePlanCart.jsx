@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import { HiUserGroup } from "react-icons/hi";
 import { Link } from "react-router-dom";
+import useUser from "../Hooks/useUser";
 
 const engImg = "https://i.ibb.co/MPZD6Q4/Flag-of-the-United-Kingdom.png";
 const spnImg = "https://i.ibb.co/9r6hjvc/Spain-flag-300.png";
@@ -15,6 +16,9 @@ const noImg =
   "https://i.ibb.co/DwfmK4q/depositphotos-86009122-stock-photo-languages-signpost.webp";
 
 const LanguagePlanCart = ({ data, select }) => {
+
+  const [loggedUser] = useUser();
+  
   // console.log(data)
   const {
     _id,
@@ -45,6 +49,8 @@ const LanguagePlanCart = ({ data, select }) => {
   } else {
     photo = noImg;
   }
+
+  const show = (loggedUser?.designation != 'Student' || !(availableSeats - enrolled))
 
   return (
     <div className="my-3">
@@ -90,7 +96,7 @@ const LanguagePlanCart = ({ data, select }) => {
             <Link
               to={""}
               onClick={() => select(data)}
-              disabled={!(availableSeats - enrolled)}
+              disabled={show}
               className={` btn btn-sm rounded-2xl px-5 hover:bg-my-secondary hover:border-my-secondary text-white border-my-primary bg-my-primary`}
             >
               Select
