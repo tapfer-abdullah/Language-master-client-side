@@ -25,7 +25,7 @@ const InstructorClasses = () => {
     );
 
   const handleUpdate = (id) => {
-    console.log(id)
+    // console.log(id)
     UpdateClass(id)
 
     // fetch(`http://localhost:5000/class/${id}`, {
@@ -75,7 +75,7 @@ const InstructorClasses = () => {
             {/* row 1 */}
             {data?.map((d) => (
               <ICCard
-              handleUpdate={handleUpdate}
+              // handleUpdate={handleUpdate}
                 index={data.indexOf(d)}
                 key={d._id}
                 data={d}

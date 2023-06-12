@@ -2,11 +2,12 @@
 import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../../AuthPage/AuthProvider';
-import { useLoaderData, useParams } from 'react-router-dom';
+import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
 
 const UpdateClass = () => {
     const [fill, setFill] = useState(false);
     const { user } = useContext(AuthContext);
+    const navigate  = useNavigate();
   
     const params = useParams();
     const oldData = useLoaderData();
@@ -68,7 +69,9 @@ const UpdateClass = () => {
         console.log(r);
         if(r.modifiedCount >0){
         //   form.reset();
+        navigate("/dashboard/my-classes");
           alert("Updated Successfully")
+
         }
   
       })

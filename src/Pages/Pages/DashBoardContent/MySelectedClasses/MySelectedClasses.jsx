@@ -10,7 +10,7 @@ const MySelectedClasses = () => {
   const {user, loading} = useContext(AuthContext);
 
   const [cart, refetch , isLoading] = useCart();
-  // const total = cart.reduce((sum, item) => sum + item.price, 0);
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
 
    const CardData = createContext(cart || 0);
 
@@ -47,7 +47,7 @@ const MySelectedClasses = () => {
     <div className="">
       <div className="mt-20 mb-10 text-center w-9/12 md:w-1/2 mx-auto">
         <h3 className="text-3xl font-semibold mb-5">My Selected Courses</h3>
-        {/* <h3 className="text-base font-semibold mb-5">Total price: ${total.toFixed(2)}</h3> */}
+        <h3 className="text-base font-semibold mb-5">Total price: ${total.toFixed(2)}</h3>
       </div>
 
       <div className="overflow-x-auto mb-20">

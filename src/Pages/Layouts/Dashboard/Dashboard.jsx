@@ -4,15 +4,35 @@ import Header from "../../SharedPages/Header";
 import Footer from "../../SharedPages/Footer";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { FaShoppingCart, FaUser, FaUsers, FaWallet } from "react-icons/fa";
+import useUser from "../../../Components/Hooks/useUser";
 
 const Dashboard = () => {
+
+  const [loggedUser] = useUser();
+  console.log("logged", loggedUser)
+
+  let isUser = false, isAdmin = false;
+
+  if(loggedUser?.designation == "Student"){
+    isUser= true;
+  }
+  else if(loggedUser?.designation == "Admin"){
+    isAdmin = true;
+  }
+  else{
+    isAdmin = false;
+    isUser = false;
+  }
   // const isAdmin = true;
-  const isAdmin = false;
+
+  // const isAdmin = false;
   // const isUser = false;
-  const isUser = true;
+  // const isUser = true;
 
   const userOptions = (
     <>
+    <li className="text-center text-2xl font-bold text-white mt-5">User Dashboard</li>
+    <li className="divider"></li>
       <li>
         <NavLink
           className={({ isActive }) =>
@@ -51,6 +71,8 @@ const Dashboard = () => {
 
   const instructorOptions = (
     <>
+    <li className="text-center text-2xl font-bold text-white mt-5">Instructor Dashboard</li>
+    <li className="divider"></li>
       <li>
         <NavLink
           className={({ isActive }) =>
@@ -77,6 +99,8 @@ const Dashboard = () => {
   );
   const adminOptions = (
     <>
+    <li className="text-center text-2xl font-bold text-white mt-5">Admin Dashboard</li>
+    <li className="divider"></li>
       <li>
         <NavLink
           className={({ isActive }) =>

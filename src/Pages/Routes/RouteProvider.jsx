@@ -16,6 +16,10 @@ import ManageClasses from "../Pages/DashBoardContent/Admin/ManageClasses/ManageC
 import InstructorClasses from "../Pages/DashBoardContent/Instructor/InstructorClasses/InstructorClasses";
 import AddAClass from "../Pages/DashBoardContent/Instructor/AddAClass/AddAClass";
 import UpdateClass from "../Pages/DashBoardContent/Instructor/InstructorClasses/UpdateClass";
+import PrivateRoute from "./PrivateRoute";
+import PrivateInstructor from "./PrivateInstructor";
+import PrivateUser from "./PrivateUser";
+import PrivateAdmin from "./PrivateAdmin";
 
 const router = createBrowserRouter([
   {
@@ -47,43 +51,43 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: "/dashboard",
-        element: <DashBoardContent></DashBoardContent>
+        element: <PrivateRoute><DashBoardContent></DashBoardContent></PrivateRoute>
       },
       {
         path: "my-selected-classes",
-        element: <MySelectedClasses></MySelectedClasses>
+        element: <PrivateUser><MySelectedClasses></MySelectedClasses></PrivateUser>
       },
       {
         path: "/dashboard/my-enrolled-classes",
-        element: <MyEnrolledClasses></MyEnrolledClasses>
+        element: <PrivateUser><MyEnrolledClasses></MyEnrolledClasses></PrivateUser>
       },
       {
         path: "/dashboard/my-payment-history",
-        element: <MyPaymentHistory></MyPaymentHistory>
+        element: <PrivateUser><MyPaymentHistory></MyPaymentHistory></PrivateUser>
       },
       {
         path: "/dashboard/users",
-        element: <ManageUsers></ManageUsers>
+        element: <PrivateAdmin><ManageUsers></ManageUsers></PrivateAdmin>
       },
       {
         path: "/dashboard/classes",
-        element: <ManageClasses></ManageClasses>
+        element: <PrivateAdmin><ManageClasses></ManageClasses></PrivateAdmin>
       },
       {
         path: "/dashboard/my-classes",
-        element: <InstructorClasses></InstructorClasses>
+        element: <PrivateInstructor><InstructorClasses></InstructorClasses></PrivateInstructor>
       },
       {
         path: "/dashboard/add-a-class",
-        element: <AddAClass></AddAClass>
+        element: <PrivateInstructor><AddAClass></AddAClass></PrivateInstructor>
       },
       {
         path: "/dashboard/my-classes/:id",
-        element: <UpdateClass></UpdateClass>,
+        element: <PrivateInstructor><UpdateClass></UpdateClass></PrivateInstructor>,
         loader: ({params}) => fetch(`http://localhost:5000/class/${params.id}`)
       },
     ]
