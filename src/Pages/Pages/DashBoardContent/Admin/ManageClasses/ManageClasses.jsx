@@ -5,7 +5,7 @@ import { RotatingLines } from "react-loader-spinner";
 import MClassCart from "./MClassCart";
 
 const ManageClasses = () => {
-  const [feedback, setFeedback] = useState("");
+  // const [feedback, setFeedback] = useState("");
   const { isLoading, data, refetch } = useQuery({
     queryKey: ["allClasses"],
     queryFn: () =>
@@ -43,7 +43,7 @@ const ManageClasses = () => {
       });
   };
 
-  const handleFeedBack = () => {
+  const handleFeedBack = (id) => {
     // window.my_modal_3.showModal()
 
     let text;
@@ -52,11 +52,26 @@ const ManageClasses = () => {
       text = "User cancelled the prompt.";
     }
 
-    setFeedback(message)
+    // setFeedback(message)
+
+    fetch(`http://localhost:5000/course-feedback/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({feedback: message}),
+      })
+      .then(res => res.json())
+      .then(d => {
+        console.log(d)
+        if(d.modifiedCount >0){
+          alert("Feedback added")
+        }
+      })
 
   };
 
-  console.log(feedback)
+  // console.log(feedback)
 
   return (
     <div className="pt-14">

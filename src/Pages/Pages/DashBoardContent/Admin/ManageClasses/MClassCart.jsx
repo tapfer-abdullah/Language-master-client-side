@@ -33,7 +33,7 @@ const MClassCart = ({ index, data, handleStatus, handleFeedBack}) => {
           <th className='flex'>
             <Link disabled={status == "Denied" || status == "approved"} onClick={()=> handleStatus(_id, "approved")} className="btn btn-outline mx-1 btn-xs">Approved</Link>
             <Link disabled={status == "Denied" || status == "approved"} onClick={()=> handleStatus(_id, "Denied")} className="btn btn-outline mx-1 btn-xs">Denied</Link>
-            <Link onClick={()=> handleFeedBack()} className="btn btn-outline mx-1 btn-xs">Feed Back</Link>
+            <Link onClick={()=> handleFeedBack(_id)} className="btn btn-outline mx-1 btn-xs">Feed Back</Link>
           </th>
         </tr>
       </>

@@ -53,6 +53,23 @@ const Classes = () => {
       }
     }
 
+    // TODO: this code will be added to poyment page 
+    // fetch(`http://localhost:5000/course/${data._id}`, {
+    //     method: "PATCH",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     body: JSON.stringify({enrolled: data.enrolled+1}),
+    //   })
+    //   .then(res => res.json())
+    //   .then(d => {
+    //     console.log(d)
+    //     if(d.modifiedCount >0){
+    //       alert("Added to DB")
+    //     }
+    //   })
+
+
     const {name, price, availableSeats, instructor, instructorMail} = data;
       const cart = {email: user.email, courseName:name, price, availableSeats, instructor, instructorMail, status: "unpaid"}
       console.log(cart)
