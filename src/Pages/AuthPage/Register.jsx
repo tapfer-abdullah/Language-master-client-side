@@ -81,8 +81,36 @@ const Register = () => {
   const handleGoogle = ()=>{
     LoginWithGoogle()
     .then((result)=>{
-        alert("Successful")
-        console.log(result)
+      const loggedUser = result.user;
+      const newUser = {name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL, designation: "user" };
+
+        fetch("http://localhost:5000/user",{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        }
+        )
+        .then(res => res.json())
+        .then(d => {
+          console.log("db",d)
+          if(d.insertedId){
+            alert("Register success")
+            Swal.fire({
+              title: `Registration successful! Thanks, ${loggedUser.displayName}`,
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+              }
+            })
+          }
+        })
+
+        
+        // console.log(result)
         navigate("/");
     })
     .catch(err =>{
