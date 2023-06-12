@@ -8,10 +8,15 @@ import { RotatingLines } from 'react-loader-spinner';
 
 const MyEnrolledClasses = () => {
   const {user, loading} = useContext(AuthContext);
+  const token = localStorage.getItem('access-token')
     const { isLoading, data, refetch } = useQuery({
         queryKey: ['repoData', 'loading'],
         queryFn: () =>
-          fetch(`http://localhost:5000/my-selected-course?email=${user?.email}&status=paid`).then(
+          fetch(`http://localhost:5000/my-selected-course?email=${user?.email}&status=paid`, {
+            headers: {
+              authorization: `bearer ${token}`
+            }
+          }).then(
             (res) => res.json(),
           ),
           enabled: !!user,
@@ -53,7 +58,7 @@ const MyEnrolledClasses = () => {
           <tbody>
             {/* row 1 */}
             {
-                data?.map(d => <MySelectedTable index={data.indexOf(d)} payment={`Paid`} key={d._id} data={d}></MySelectedTable>)
+                data?.map(d => <MySelectedTable index={data?.indexOf(d)} payment={`Paid`} key={d._id} data={d}></MySelectedTable>)
             }
           </tbody>
         </table>

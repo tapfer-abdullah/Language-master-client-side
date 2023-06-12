@@ -4,11 +4,17 @@ import { useQuery } from '@tanstack/react-query';
 
 const useCart = () => {
     const {user} = useContext(AuthContext);
+    const token = localStorage.getItem('access-token');
 
     const { isLoading, data: cart, refetch } = useQuery({
         queryKey: ["repoData"],
         queryFn: () =>
-          fetch(`http://localhost:5000/my-selected-course?email=${user?.email}&status=unpaid`).then((res) =>
+          fetch(`http://localhost:5000/my-selected-course?email=${user?.email}&status=unpaid`, {
+            headers: {
+              authorization: `bearer ${token}`
+            }
+          })
+          .then((res) =>
             res.json()
           ),
           enabled: !!user,

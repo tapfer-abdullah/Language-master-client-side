@@ -8,7 +8,8 @@ import { FaShoppingCart, FaUser, FaUsers, FaWallet } from "react-icons/fa";
 const Dashboard = () => {
   // const isAdmin = true;
   const isAdmin = false;
-  const isUser = false;
+  // const isUser = false;
+  const isUser = true;
 
   const userOptions = (
     <>
