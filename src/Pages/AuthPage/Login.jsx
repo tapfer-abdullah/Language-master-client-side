@@ -50,7 +50,7 @@ const Login = () => {
     LoginWithGoogle()
       .then((result) => {
         const loggedUser = result.user;
-      const newUser = {name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL, designation: "user" };
+      const newUser = {name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL, designation: "Student" };
 
         fetch("http://localhost:5000/user",{
           method: "POST",
@@ -76,7 +76,7 @@ const Login = () => {
             })
           }
         })
-        console.log(result);
+        // console.log(result);
         navigate(from);
       })
       .catch((err) => {

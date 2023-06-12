@@ -40,7 +40,7 @@ const Register = () => {
       UpdateUser(data.name, data.photoUrl)
       .then(()=>{
 
-        const newUser = {name: data.name, email: data.email, photo: data.photoUrl, designation: "user" };
+        const newUser = {name: data.name, email: data.email, photo: data.photoUrl, designation: "Student" };
 
         fetch("http://localhost:5000/user",{
           method: "POST",
@@ -82,7 +82,7 @@ const Register = () => {
     LoginWithGoogle()
     .then((result)=>{
       const loggedUser = result.user;
-      const newUser = {name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL, designation: "user" };
+      const newUser = {name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL, designation: "Student" };
 
         fetch("http://localhost:5000/user",{
           method: "POST",

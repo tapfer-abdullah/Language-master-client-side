@@ -21,8 +21,8 @@ const InstroctorPageCard = ({data}) => {
   return (
     <div className="my-4">
       <div className="card w-96 bg-base-100 shadow-xl relative mx-auto">
-        <figure className="px-5 pt-5">
-          <img src={photo} alt="Language Plan" className="rounded-md" />
+        <figure className="px-5 pt-5 w-96 h-[230px]">
+          <img src={photo} alt="Language Plan" className="rounded-md w-full h-full" />
         </figure>
         <div className="card-body relative">
           <img

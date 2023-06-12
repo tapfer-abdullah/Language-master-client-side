@@ -3,13 +3,113 @@ import React from "react";
 import Header from "../../SharedPages/Header";
 import Footer from "../../SharedPages/Footer";
 import { Link, NavLink, Outlet } from "react-router-dom";
-import { FaShoppingCart, FaWallet } from "react-icons/fa";
+import { FaShoppingCart, FaUser, FaUsers, FaWallet } from "react-icons/fa";
 
 const Dashboard = () => {
+  const isAdmin = true;
+  const isUser = false;
 
+  const userOptions = (
+    <>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-white text-lg font-semibold" : ""
+          }
+          to="/dashboard/my-selected-classes"
+        >
+          <FaShoppingCart></FaShoppingCart>
+          {/* <span>{data.length}</span> */}
+          My Selected Classes
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-white text-lg font-semibold" : ""
+          }
+          to="/dashboard/my-enrolled-classes"
+        >
+          <FaWallet></FaWallet> My Enrolled Classes
+        </NavLink>
+      </li>
 
-  // const {user} = use
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-white text-lg font-semibold" : ""
+          }
+          to="/dashboard/my-payment-history"
+        >
+          <FaWallet></FaWallet> Payment History
+        </NavLink>
+      </li>
+    </>
+  );
 
+  const instructorOptions = (
+    <>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-white text-lg font-semibold" : ""
+          }
+          to="/dashboard/my-selected-classes"
+        >
+          <FaShoppingCart></FaShoppingCart>
+          {/* <span>{data.length}</span> */}
+          My Selected Classes
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-white text-lg font-semibold" : ""
+          }
+          to="/dashboard/my-enrolled-classes"
+        >
+          <FaWallet></FaWallet> My Enrolled Classes
+        </NavLink>
+      </li>
+
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-white text-lg font-semibold" : ""
+          }
+          to="/dashboard/my-payment-history"
+        >
+          <FaWallet></FaWallet> Payment History
+        </NavLink>
+      </li>
+    </>
+  );
+  const adminOptions = (
+    <>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-white text-lg font-semibold" : ""
+          }
+          to="/dashboard/classes"
+        >
+          <FaShoppingCart></FaShoppingCart>
+          {/* <span>{data.length}</span> */}
+          Manage Classes
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? "text-white text-lg font-semibold" : ""
+          }
+          to="/dashboard/users"
+        >
+          <FaUsers></FaUsers> Manage Users
+        </NavLink>
+      </li>
+    </>
+  );
   return (
     <>
       <div className="max-w-7xl mx-auto">
@@ -31,39 +131,11 @@ const Dashboard = () => {
             <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
             <ul className="menu p-4 w-80 h-full text-base-content pt-24 bg-my-secondary">
               {/* Sidebar content here */}
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-white text-lg font-semibold" : ""
-                  }
-                  to="/dashboard/my-selected-classes"
-                >
-                  <FaShoppingCart></FaShoppingCart>
-                   {/* <span>{data.length}</span> */}
-                   My Selected Classes
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-white text-lg font-semibold" : ""
-                  }
-                  to="/dashboard/my-enrolled-classes"
-                >
-                  <FaWallet></FaWallet> My Enrolled Classes
-                </NavLink>
-              </li>
 
-              <li>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "text-white text-lg font-semibold" : ""
-                  }
-                  to="/dashboard/my-payment-history"
-                >
-                  <FaWallet></FaWallet> Payment History
-                </NavLink>
-              </li>
+              {
+                isUser? userOptions: (isAdmin? adminOptions: instructorOptions)
+              }
+
             </ul>
           </div>
         </div>

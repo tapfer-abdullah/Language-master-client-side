@@ -5,9 +5,7 @@ import PageBanner from "../../../Components/PageBanner/PageBanner";
 const DashBoardContent = () => {
   return (
     <div>
-        {/* <PageBanner title={"Student Dashboard"}
-        subTitle={`kasjdfl`}
-        ></PageBanner> */}
+        <h3>Language Master Dash Board</h3>
 
       
     </div>
