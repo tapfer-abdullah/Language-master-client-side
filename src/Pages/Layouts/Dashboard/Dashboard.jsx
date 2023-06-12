@@ -6,7 +6,8 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import { FaShoppingCart, FaUser, FaUsers, FaWallet } from "react-icons/fa";
 
 const Dashboard = () => {
-  const isAdmin = true;
+  // const isAdmin = true;
+  const isAdmin = false;
   const isUser = false;
 
   const userOptions = (
@@ -54,11 +55,11 @@ const Dashboard = () => {
           className={({ isActive }) =>
             isActive ? "text-white text-lg font-semibold" : ""
           }
-          to="/dashboard/my-selected-classes"
+          to="/dashboard/my-classes"
         >
           <FaShoppingCart></FaShoppingCart>
           {/* <span>{data.length}</span> */}
-          My Selected Classes
+          My Classes
         </NavLink>
       </li>
       <li>
@@ -66,20 +67,9 @@ const Dashboard = () => {
           className={({ isActive }) =>
             isActive ? "text-white text-lg font-semibold" : ""
           }
-          to="/dashboard/my-enrolled-classes"
+          to="/dashboard/add-a-class"
         >
-          <FaWallet></FaWallet> My Enrolled Classes
-        </NavLink>
-      </li>
-
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? "text-white text-lg font-semibold" : ""
-          }
-          to="/dashboard/my-payment-history"
-        >
-          <FaWallet></FaWallet> Payment History
+          <FaWallet></FaWallet> Add a class
         </NavLink>
       </li>
     </>

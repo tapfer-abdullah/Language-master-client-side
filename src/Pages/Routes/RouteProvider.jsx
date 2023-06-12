@@ -13,6 +13,9 @@ import MyEnrolledClasses from "../Pages/DashBoardContent/MyEnrolledClasses/MyEnr
 import MyPaymentHistory from "../Pages/DashBoardContent/MyPaymentHistory/MyPaymentHistory";
 import ManageUsers from "../Pages/DashBoardContent/Admin/ManageUsers/ManageUsers";
 import ManageClasses from "../Pages/DashBoardContent/Admin/ManageClasses/ManageClasses";
+import InstructorClasses from "../Pages/DashBoardContent/Instructor/InstructorClasses/InstructorClasses";
+import AddAClass from "../Pages/DashBoardContent/Instructor/AddAClass/AddAClass";
+import UpdateClass from "../Pages/DashBoardContent/Instructor/InstructorClasses/UpdateClass";
 
 const router = createBrowserRouter([
   {
@@ -69,6 +72,19 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/classes",
         element: <ManageClasses></ManageClasses>
+      },
+      {
+        path: "/dashboard/my-classes",
+        element: <InstructorClasses></InstructorClasses>
+      },
+      {
+        path: "/dashboard/add-a-class",
+        element: <AddAClass></AddAClass>
+      },
+      {
+        path: "/dashboard/my-classes/:id",
+        element: <UpdateClass></UpdateClass>,
+        loader: ({params}) => fetch(`http://localhost:5000/class/${params.id}`)
       },
     ]
   }

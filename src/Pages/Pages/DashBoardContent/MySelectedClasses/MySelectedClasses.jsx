@@ -10,7 +10,7 @@ const MySelectedClasses = () => {
   const {user, loading} = useContext(AuthContext);
 
   const [cart, refetch , isLoading] = useCart();
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
+  const total = cart?.reduce((sum, item) => sum + item.price, 0);
 
    const CardData = createContext(cart || 0);
 
