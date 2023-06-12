@@ -14,7 +14,7 @@ const Login = () => {
   console.log(location);
   const from = location.state?.path || location.state?.pathname || "/";
 
-//   const [disable, setDisable] = useState(true);
+  //   const [disable, setDisable] = useState(true);
   const { user, Login, LoginWithGoogle } = useContext(AuthContext);
   const [errorM, setErrorM] = useState("");
 
@@ -28,7 +28,7 @@ const Login = () => {
     Login(email, password)
       .then((result) => {
         console.log(result.user);
-        setErrorM('');
+        setErrorM("");
 
         Swal.fire({
           position: "top-center",
@@ -38,29 +38,26 @@ const Login = () => {
           timer: 1500,
         });
 
-
         navigate(from);
       })
       .catch((err) => {
-        setErrorM(err.message)
-        console.log(err)
-    });
+        setErrorM(err.message);
+        console.log(err);
+      });
   };
 
-
-  const handleGoogle = ()=>{
+  const handleGoogle = () => {
     LoginWithGoogle()
-    .then((result)=>{
-        alert("Successful")
-        console.log(result)
+      .then((result) => {
+        alert("Successful");
+        console.log(result);
         navigate(from);
-    })
-    .catch(err =>{
-        console.log(err)
-        setErrorM(err.message)
-    })
-  }
-
+      })
+      .catch((err) => {
+        console.log(err);
+        setErrorM(err.message);
+      });
+  };
 
   return (
     <div className="flex justify-center items-center">
@@ -69,14 +66,13 @@ const Login = () => {
           className="hero p-5 md:px-10 md:py-5 shadow-lg shadow-slate-950/50 "
           //   style={{ backgroundImage: `url(${bgImg})` }}
         >
-          <form
-            onSubmit={handleLogin}
-            className="hero-content flex-col lg:flex-row"
-          >
+          <form onSubmit={handleLogin} className="hero-content flex-col">
             <div className="text-center lg:text-left">
               {/* <img src={bgImg2} alt="" /> */}
             </div>
-            <div className="card flex-shrink-0 w-full max-w-sm">
+            <div className="card flex-shrink-0 w-full max-w-md">
+              <h3 className="text-2xl text-center font-semibold mb-3">Please Log in</h3>
+
               <div className="card-body">
                 <div className="form-control">
                   <label className="label">
@@ -117,9 +113,13 @@ const Login = () => {
                   </Link>
                 </p>
                 <div className="divider uppercase">Or Sing in with</div>
-                <Link onClick={handleGoogle} className="btn btn-circle btn-outline text-center text-my-secondary hover:text-white hover:bg-my-primary hover:border-my-primary mx-auto"><FaGoogle></FaGoogle> </Link>
+                <Link
+                  onClick={handleGoogle}
+                  className="btn btn-circle btn-outline text-center text-my-secondary hover:text-white hover:bg-my-primary hover:border-my-primary mx-auto"
+                >
+                  <FaGoogle></FaGoogle>{" "}
+                </Link>
               </div>
-              
             </div>
           </form>
         </div>

@@ -5,19 +5,22 @@ import { Link, NavLink } from "react-router-dom";
 import BtnOutLine from "../../Components/Buttons/BtnOutLine";
 import BtnSolid from "../../Components/Buttons/BtnSolid";
 import { AuthContext } from "../AuthPage/AuthProvider";
-
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../Components/Hooks/useCart";
 
 const Header = () => {
-const {user, Logout} = useContext(AuthContext);
+  const { user, Logout } = useContext(AuthContext);
+  const [cart] = useCart();
+  console.log("header", cart);
 
   // console.log(user)
-  const handleLogout = () =>{
+  const handleLogout = () => {
     Logout()
-    .then(() => {
-      console.log("Log out successfully")
-    })
-    .catch(err => console.log(err));
-  }
+      .then(() => {
+        console.log("Log out successfully");
+      })
+      .catch((err) => console.log(err));
+  };
 
   const menu = (
     <>
@@ -92,32 +95,66 @@ const {user, Logout} = useContext(AuthContext);
             </label>
             <ul
               tabIndex={0}
-              className="flex items-center menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 text-base font-semibold"
+              className="flex items-center menu menu-compact dropdown-content mt-3 p-2 shadow bg-bermuda rounded-box w-52 text-base font-semibold"
             >
               {menu}
               {user && conditionalMenu}
+              {user && (
+                 <NavLink
+                 to="/dashboard/my-selected-classes"
+                   className={({ isActive }) =>
+                     isActive
+                       ? "text-[black] bg-white text-lg font-semibold btn bg-transparent"
+                       : "btn bg-transparent hover:text-[black] text-white"
+                   }
+                   //  className="btn bg-transparent hover:text-[black] text-white"
+                 >
+                   <FaShoppingCart className=" "></FaShoppingCart>
+                   <div className="badge badge-secondary">{cart?.length}</div>
+                 </NavLink>
+              )}
             </ul>
           </div>
-          <Link to="/" className="text-my-secondary text-3xl font-bold relative flex flex-col items-center">
-            <span className="">Language</span><span className="text-my-primary ">Master</span>
+          <Link
+            to="/"
+            className="text-my-secondary text-3xl font-bold relative flex flex-col items-center"
+          >
+            <span className="">Language</span>
+            <span className="text-my-primary ">Master</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="flex items-center menu menu-horizontal px-1 text-base font-semibold">
             {menu}
             {user && conditionalMenu}
+            {user && (
+              <NavLink
+              to="/dashboard/my-selected-classes"
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-[black] bg-white text-lg font-semibold btn bg-transparent"
+                    : "btn bg-transparent hover:text-[black] text-white"
+                }
+                //  className="btn bg-transparent hover:text-[black] text-white"
+              >
+                <FaShoppingCart className=" "></FaShoppingCart>
+                <div className="badge badge-secondary">{cart?.length}</div>
+              </NavLink>
+            )}
             {/* {conditionalMenu} */}
           </ul>
         </div>
         <div className="navbar-end">
           {user ? (
             <>
-            <img
-            className="h-12 w-12 rounded-full mx-3"
-            title={user?.displayName}
-             src={user?.photoURL} alt="userImg" />
+              <img
+                className="h-12 w-12 rounded-full mx-3"
+                title={user?.displayName}
+                src={user?.photoURL}
+                alt="userImg"
+              />
               <Link
-              onClick={handleLogout}
+                onClick={handleLogout}
                 to="/login"
                 className="btn btn-outline hover:bg-my-primary hover:border-my-primary text-my-secondary border-my-secondary"
               >

@@ -10,6 +10,7 @@ import Dashboard from "../Layouts/Dashboard/Dashboard";
 import DashBoardContent from "../Pages/DashBoardContent/DashBoardContent";
 import MySelectedClasses from "../Pages/DashBoardContent/MySelectedClasses/MySelectedClasses";
 import MyEnrolledClasses from "../Pages/DashBoardContent/MyEnrolledClasses/MyEnrolledClasses";
+import MyPaymentHistory from "../Pages/DashBoardContent/MyPaymentHistory/MyPaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-enrolled-classes",
         element: <MyEnrolledClasses></MyEnrolledClasses>
+      },
+      {
+        path: "/dashboard/my-payment-history",
+        element: <MyPaymentHistory></MyPaymentHistory>
       }
     ]
   }

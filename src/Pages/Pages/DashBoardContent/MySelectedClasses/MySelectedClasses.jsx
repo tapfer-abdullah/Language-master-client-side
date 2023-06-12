@@ -1,26 +1,27 @@
 /* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
-import React, { useContext } from "react";
+import React, { createContext, useContext } from "react";
 import MySelectedTable from "./MySelectedTable";
 import { AuthContext } from "../../../AuthPage/AuthProvider";
+import { RotatingLines } from "react-loader-spinner";
+import useCart from "../../../../Components/Hooks/useCart";
 
 const MySelectedClasses = () => {
   const {user, loading} = useContext(AuthContext);
 
-  // if(loading){
-  //   return "Loading..."
-  // }
+  const [cart, refetch , isLoading] = useCart();
+  const total = cart.reduce((sum, item) => sum + item.price, 0);
 
-  const { isLoading, error, data, refetch } = useQuery({
-    queryKey: ["repoData"],
-    queryFn: () =>
-      fetch(`http://localhost:5000/my-selected-course?email=${user?.email}&status=unpaid`).then((res) =>
-        res.json()
-      ),
-  });
+   const CardData = createContext(cart || 0);
 
-  console.log(data);
-  if (isLoading) return "Loading...";
+  // console.log(data);
+  if (isLoading) return <RotatingLines
+  strokeColor="#ff5161"
+  strokeWidth="5"
+  animationDuration="0.75"
+  width="96"
+  visible={true}
+/>
 
   const handleDelete = (id) => {
     console.log(id);
@@ -43,9 +44,10 @@ const MySelectedClasses = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <div className="mt-20 mb-10 text-center w-9/12 md:w-1/2 mx-auto">
         <h3 className="text-3xl font-semibold mb-5">My Selected Courses</h3>
+        <h3 className="text-base font-semibold mb-5">Total price: ${total.toFixed(2)}</h3>
       </div>
 
       <div className="overflow-x-auto mb-20">
@@ -64,10 +66,10 @@ const MySelectedClasses = () => {
 
           <tbody>
             {/* row 1 */}
-            {data?.map((d) => (
+            {cart?.map((d) => (
               <MySelectedTable
                 handleDelete={handleDelete}
-                index={data.indexOf(d)}
+                index={cart.indexOf(d)}
                 key={d._id}
                 data={d}
                 payment={`Pay`}

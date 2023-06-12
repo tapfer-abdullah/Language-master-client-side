@@ -4,19 +4,28 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import MySelectedTable from '../MySelectedClasses/MySelectedTable';
 import { AuthContext } from '../../../AuthPage/AuthProvider';
+import { RotatingLines } from 'react-loader-spinner';
 
 const MyEnrolledClasses = () => {
   const {user, loading} = useContext(AuthContext);
-    const { isLoading, error, data, refetch } = useQuery({
-        queryKey: ['repoData'],
+    const { isLoading, data, refetch } = useQuery({
+        queryKey: ['repoData', 'loading'],
         queryFn: () =>
           fetch(`http://localhost:5000/my-selected-course?email=${user?.email}&status=paid`).then(
             (res) => res.json(),
           ),
+          enabled: !!user,
       })
     
       console.log(data)
-      if (isLoading) return 'Loading...'
+      if (isLoading) return <RotatingLines
+      strokeColor="#ff5161"
+      strokeWidth="5"
+      animationDuration="0.75"
+      width="96"
+      visible={true}
+    />
+
 
 
   return (
@@ -26,6 +35,7 @@ const MyEnrolledClasses = () => {
       </div>
 
       <div className="overflow-x-auto mb-20">
+        {/* {data.length == 0 && refetch()} */}
         <table
          className="table w-[65vw] mx-5">
           {/* head */}

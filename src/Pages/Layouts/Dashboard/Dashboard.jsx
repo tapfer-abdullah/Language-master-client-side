@@ -2,9 +2,14 @@
 import React from "react";
 import Header from "../../SharedPages/Header";
 import Footer from "../../SharedPages/Footer";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
+import { FaShoppingCart, FaWallet } from "react-icons/fa";
 
 const Dashboard = () => {
+
+
+  // const {user} = use
+
   return (
     <>
       <div className="max-w-7xl mx-auto">
@@ -27,14 +32,37 @@ const Dashboard = () => {
             <ul className="menu p-4 w-80 h-full text-base-content pt-24 bg-my-secondary">
               {/* Sidebar content here */}
               <li>
-                <Link to="/dashboard/my-selected-classes">
-                  My Selected Classes
-                </Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-white text-lg font-semibold" : ""
+                  }
+                  to="/dashboard/my-selected-classes"
+                >
+                  <FaShoppingCart></FaShoppingCart>
+                   {/* <span>{data.length}</span> */}
+                   My Selected Classes
+                </NavLink>
               </li>
               <li>
-                <Link to="/dashboard/my-enrolled-classes">
-                  My Enrolled Classes
-                </Link>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-white text-lg font-semibold" : ""
+                  }
+                  to="/dashboard/my-enrolled-classes"
+                >
+                  <FaWallet></FaWallet> My Enrolled Classes
+                </NavLink>
+              </li>
+
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    isActive ? "text-white text-lg font-semibold" : ""
+                  }
+                  to="/dashboard/my-payment-history"
+                >
+                  <FaWallet></FaWallet> Payment History
+                </NavLink>
               </li>
             </ul>
           </div>

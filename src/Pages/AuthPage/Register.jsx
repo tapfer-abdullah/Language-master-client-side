@@ -39,16 +39,35 @@ const Register = () => {
 
       UpdateUser(data.name, data.photoUrl)
       .then(()=>{
-        alert("Register success")
-        Swal.fire({
-          title: `Registration successful! Thanks, ${data.name}`,
-          showClass: {
-            popup: 'animate__animated animate__fadeInDown'
+
+        const newUser = {name: data.name, email: data.email, photo: data.photoUrl, designation: "user" };
+
+        fetch("http://localhost:5000/user",{
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
           },
-          hideClass: {
-            popup: 'animate__animated animate__fadeOutUp'
+          body: JSON.stringify(newUser),
+        }
+        )
+        .then(res => res.json())
+        .then(d => {
+          // console.log("db",d)
+          if(d.insertedId){
+            alert("Register success")
+            Swal.fire({
+              title: `Registration successful! Thanks, ${data.name}`,
+              showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+              }
+            })
           }
         })
+
+       
         navigate("/");
       })
       .catch("Unable to update profile!")
@@ -117,7 +136,9 @@ const Register = () => {
             <div className="text-center lg:text-left">
               {/* <img src={bgImg2} alt="" /> */}
             </div>
-            <div className="card flex-shrink-0 w-full max-w-sm">
+            <div className="card flex-shrink-0 w-full max-w-md">
+            <h3 className="text-2xl text-center font-semibold mb-3">Please Register</h3>
+
               <div className="card-body">
                 <div className="form-control">
                   <label className="label">
