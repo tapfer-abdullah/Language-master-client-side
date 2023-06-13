@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import MClassCart from "./MClassCart";
+import CustomHelmet from "../../../../../Components/Helmet/CustomHelmet";
 
 const ManageClasses = () => {
   // const [feedback, setFeedback] = useState("");
@@ -75,6 +76,7 @@ const ManageClasses = () => {
 
   return (
     <div className="pt-14">
+      <CustomHelmet>Manage-Class</CustomHelmet>
       <h3 className="text-2xl font-semibold text-center mb-5">
         All the Classes
       </h3>

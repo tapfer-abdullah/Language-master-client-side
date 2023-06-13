@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import MUserCart from "./MUserCart";
 import { RotatingLines } from "react-loader-spinner";
+import CustomHelmet from "../../../../../Components/Helmet/CustomHelmet";
 
 const ManageUsers = () => {
   const { isLoading, data, refetch } = useQuery({
@@ -43,6 +44,7 @@ const ManageUsers = () => {
 
   return (
     <div className="pt-14">
+      <CustomHelmet>Manage-User</CustomHelmet>
       <h3 className="text-2xl font-semibold text-center mb-5">All the users</h3>
 
       <div className="overflow-x-auto mb-20">

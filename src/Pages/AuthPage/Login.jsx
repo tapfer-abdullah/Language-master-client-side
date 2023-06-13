@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./AuthProvider";
 import { FaGoogle } from "react-icons/fa";
+import CustomHelmet from "../../Components/Helmet/CustomHelmet";
 
 const Login = () => {
   const [seePass, setSeePass] = useState(true);
@@ -51,32 +52,36 @@ const Login = () => {
     LoginWithGoogle()
       .then((result) => {
         const loggedUser = result.user;
-      const newUser = {name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL, designation: "Student" };
+        const newUser = {
+          name: loggedUser.displayName,
+          email: loggedUser.email,
+          photo: loggedUser.photoURL,
+          designation: "Student",
+        };
 
-        fetch("http://localhost:5000/user",{
+        fetch("http://localhost:5000/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(newUser),
-        }
-        )
-        .then(res => res.json())
-        .then(d => {
-          // console.log("db",d)
-          if(d.insertedId){
-            alert("Register success")
-            Swal.fire({
-              title: `Registration successful! Thanks, ${loggedUser.displayName}`,
-              showClass: {
-                popup: 'animate__animated animate__fadeInDown'
-              },
-              hideClass: {
-                popup: 'animate__animated animate__fadeOutUp'
-              }
-            })
-          }
         })
+          .then((res) => res.json())
+          .then((d) => {
+            // console.log("db",d)
+            if (d.insertedId) {
+              alert("Register success");
+              Swal.fire({
+                title: `Registration successful! Thanks, ${loggedUser.displayName}`,
+                showClass: {
+                  popup: "animate__animated animate__fadeInDown",
+                },
+                hideClass: {
+                  popup: "animate__animated animate__fadeOutUp",
+                },
+              });
+            }
+          });
         // console.log(result);
         navigate(from);
       })
@@ -88,17 +93,22 @@ const Login = () => {
 
   return (
     <div className="flex justify-center items-center">
-      <div className="p-5 md:p-28">
-        <div
-          className="hero p-5 md:px-10 md:py-5 shadow-lg shadow-slate-950/50 "
+      <CustomHelmet>Login</CustomHelmet>
+      <div className="p-5 md:p-28 rounded-lg">
+        <div style={{ backgroundRepeat: "no-repeat", backgroundSize: "cover" ,backgroundImage: "url('https://media.istockphoto.com/id/1395240672/vector/blur-gradient-glow-abstract-pastel-background.jpg?s=612x612&w=0&k=20&c=3SoqFDOt681fQY3i_3CweeN9miIZnBYoI6oh9h9DP-k=')"}}
+          
+          className="hero p-5 md:px-10 md:py-5 shadow-lg rounded-lg shadow-slate-950/50 "
           //   style={{ backgroundImage: `url(${bgImg})` }}
         >
-          <form onSubmit={handleLogin} className="hero-content flex-col">
+          <form onSubmit={handleLogin} className="hero-content flex-col rounded-l"
+          >
             <div className="text-center lg:text-left">
               {/* <img src={bgImg2} alt="" /> */}
             </div>
             <div className="card flex-shrink-0 w-full max-w-md">
-              <h3 className="text-2xl text-center font-semibold mb-3">Please Log in</h3>
+              <h3 className="text-2xl text-center font-semibold mb-3">
+                Please Log in
+              </h3>
 
               <div className="card-body">
                 <div className="form-control">
@@ -123,12 +133,22 @@ const Login = () => {
                     className="input input-bordered"
                   />
                 </div>
-                {
-                    seePass && <span className="my-1 text-xs mx-2" onClick={()=> setSeePass(!seePass)}>See password</span>
-                  }
-                  {
-                    !seePass && <span className="my-1 text-xs mx-2" onClick={()=> setSeePass(!seePass)}>Hide password</span>
-                  }
+                {seePass && (
+                  <span
+                    className="my-1 text-xs mx-2"
+                    onClick={() => setSeePass(!seePass)}
+                  >
+                    See password
+                  </span>
+                )}
+                {!seePass && (
+                  <span
+                    className="my-1 text-xs mx-2"
+                    onClick={() => setSeePass(!seePass)}
+                  >
+                    Hide password
+                  </span>
+                )}
                 {errorM && <p className="text-my-primary">{errorM}</p>}
 
                 <div className="form-control mt-6">

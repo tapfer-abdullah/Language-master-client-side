@@ -20,7 +20,7 @@ const useCart = () => {
           enabled: !!user,
       })
 
-      return [cart, refetch, isLoading];
+      return [cart || [], refetch, isLoading];
 
     }
 

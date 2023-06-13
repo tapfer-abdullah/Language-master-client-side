@@ -5,6 +5,7 @@ import React, { useContext } from 'react';
 import MySelectedTable from '../MySelectedClasses/MySelectedTable';
 import { AuthContext } from '../../../AuthPage/AuthProvider';
 import { RotatingLines } from 'react-loader-spinner';
+import CustomHelmet from '../../../../Components/Helmet/CustomHelmet';
 
 const MyEnrolledClasses = () => {
   const {user, loading} = useContext(AuthContext);
@@ -35,6 +36,7 @@ const MyEnrolledClasses = () => {
 
   return (
     <div>
+      <CustomHelmet>Enrolled-Class</CustomHelmet>
         <div className="mt-20 mb-10 text-center w-9/12 md:w-1/2 mx-auto">
         <h3 className="text-3xl font-semibold mb-5">My Enrolled Courses</h3>
       </div>

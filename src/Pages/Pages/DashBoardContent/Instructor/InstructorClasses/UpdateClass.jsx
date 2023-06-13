@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../../AuthPage/AuthProvider';
 import { useLoaderData, useNavigate, useParams } from 'react-router-dom';
+import CustomHelmet from '../../../../../Components/Helmet/CustomHelmet';
 
 const UpdateClass = () => {
     const [fill, setFill] = useState(false);
@@ -79,6 +80,7 @@ const UpdateClass = () => {
   
     return (
       <div>
+        <CustomHelmet>Update-Class</CustomHelmet>
         <form onSubmit={handleSubmit}
         style={{backgroundImage: "url('https://i.ibb.co/BgVcNZ2/photo-1508615039623-a25605d2b022-ixlib-rb-4-0.jpg')"}}
         className="p-20 rounded-lg"

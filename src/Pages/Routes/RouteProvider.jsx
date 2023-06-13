@@ -20,6 +20,7 @@ import PrivateRoute from "./PrivateRoute";
 import PrivateInstructor from "./PrivateInstructor";
 import PrivateUser from "./PrivateUser";
 import PrivateAdmin from "./PrivateAdmin";
+import Payment from "../Pages/MakePayment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,11 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         element: <PrivateRoute><DashBoardContent></DashBoardContent></PrivateRoute>
+      },
+      {
+        path: "checkout/:id",
+        element: <PrivateUser><Payment></Payment></PrivateUser>,
+        // loader: ({params}) => fetch(`http://localhost:5000/single-cart/${params.id}`)
       },
       {
         path: "my-selected-classes",

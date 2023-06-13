@@ -28,7 +28,7 @@ const MySelectedTable = ({data, index, handleDelete, payment}) => {
 
               <td className=''>${price}</td>
               <th>
-                <BtnOutLine disabled={disabled} cStyle={`btn-sm disabled`} destination={``}>{payment}</BtnOutLine>
+                <BtnOutLine disabled={disabled} data={data} cStyle={`btn-sm disabled`} destination={`/dashboard/checkout/${data._id}`}>{payment}</BtnOutLine>
               </th>
               <th>
                 <BtnSolid disabled={disabled} cStyle={`btn-sm`} clicked={handleDelete} _id={data._id} destination={``}>Delete</BtnSolid>

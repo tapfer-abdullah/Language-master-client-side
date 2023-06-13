@@ -5,6 +5,7 @@ import Footer from "../../SharedPages/Footer";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { FaShoppingCart, FaUser, FaUsers, FaWallet } from "react-icons/fa";
 import useUser from "../../../Components/Hooks/useUser";
+import CustomHelmet from "../../../Components/Helmet/CustomHelmet";
 
 const Dashboard = () => {
 
@@ -128,6 +129,7 @@ const Dashboard = () => {
   return (
     <>
       <div className="max-w-7xl mx-auto">
+      <CustomHelmet>Dashboard</CustomHelmet>
         <Header></Header>
 
         <div className="drawer lg:drawer-open  ">

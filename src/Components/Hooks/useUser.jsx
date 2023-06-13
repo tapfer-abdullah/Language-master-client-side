@@ -1,26 +1,27 @@
-import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
-import { AuthContext } from '../../Pages/AuthPage/AuthProvider';
+import { useQuery } from "@tanstack/react-query";
+import React, { useContext } from "react";
+import { AuthContext } from "../../Pages/AuthPage/AuthProvider";
 
 const useUser = () => {
-    const {user} = useContext(AuthContext);
-    const token = localStorage.getItem('access-token');
+  const { user } = useContext(AuthContext);
+  const token = localStorage.getItem("access-token");
 
-    const { isLoading, data: loggedUser, refetch } = useQuery({
-        queryKey: ["loggedUser"],
-        queryFn: () =>
-          fetch(`http://localhost:5000/check-user/${user?.email}`, {
-            headers: {
-              authorization: `bearer ${token}`
-            }
-          })
-          .then((res) =>
-            res.json()
-          ),
-          enabled: !!user,
-      })
+  const {
+    isLoading,
+    data: loggedUser,
+    refetch,
+  } = useQuery({
+    queryKey: ["loggedUser"],
+    queryFn: () =>
+      fetch(`http://localhost:5000/check-user/${user?.email}`, {
+        headers: {
+          authorization: `bearer ${token}`,
+        },
+      }).then((res) => res.json()),
+    enabled: !!user,
+  });
 
-      return [loggedUser, refetch, isLoading];
+  return [loggedUser, refetch, isLoading];
 };
 
 export default useUser;

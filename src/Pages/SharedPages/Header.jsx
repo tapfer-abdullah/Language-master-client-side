@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import BtnOutLine from "../../Components/Buttons/BtnOutLine";
 import BtnSolid from "../../Components/Buttons/BtnSolid";
@@ -14,9 +14,11 @@ const Header = () => {
   const [cart] = useCart();
   // console.log("header", cart);
 
-  const [loggedUser] = useUser();
+  const [loggedUser, refetch] = useUser();
 
-  const show = (loggedUser?.designation == 'Student')
+  const [show , setShow]= useState((loggedUser?.designation == 'Student'));
+
+
   // console.log(show)
 
   // console.log(user)
