@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useQuery } from "@tanstack/react-query";
+import moment from "moment/moment";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +14,12 @@ const Checkout = ({ data, price }) => {
   const [clientSecret, setClientSecret] = useState("");
   const navigate = useNavigate();
 
-  console.log(price);
+  //   console.log(price);
+
+  let date = new Date().toLocaleDateString();
+  // console.log(date); // 6/17/2022
+  const time = moment().format("LT");
+  //   console.log(time)
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
@@ -83,22 +89,50 @@ const Checkout = ({ data, price }) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id: data._id}),
+        body: JSON.stringify({ id: data._id }),
       })
         .then((res) => res.json())
         .then((d) => {
-          console.log(d);
-          if (d.resultCart.modifiedCount > 0 && d.result.modifiedCount >0) {
+          //   console.log(d);
+          if (d.resultCart.modifiedCount > 0 && d.result.modifiedCount > 0) {
+            const paymentDetails = {
+              email: data.email,
+              courseName: data.courseName,
+              transactionID: paymentIntent.id,
+              amount: (paymentIntent.amount / 100).toFixed(2),
+              method: paymentIntent.payment_method_types[0],
+              date: date,
+              time,
+            };
+
+            fetch(`http://localhost:5000/payment-history/${data.email}`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(paymentDetails),
+            })
+              .then((res) => res.json())
+              .then((d) => {
+                console.log("payment date", d);
+              });
+
             // alert("Added to DB");
             alert("Payment Successful!");
             navigate("/dashboard/my-selected-classes");
           }
         });
-
-      
-      
     }
-    console.log(paymentIntent?.id);
+    // console.log(paymentIntent);
+
+    // const paymentDetails = {
+    //   transactionID: paymentIntent.id,
+    //   amount: (paymentIntent.amount / 100).toFixed(2),
+    //   method: paymentIntent.payment_method_types[0],
+    //   date: date,
+    //   time,
+    // };
+    // console.log("paymentDetails", paymentDetails);
   };
 
   return (

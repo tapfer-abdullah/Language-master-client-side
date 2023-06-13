@@ -26,10 +26,7 @@ const Payment = () => {
       });
   }, [params.id]);
 
-  //   if(!data){
-  //     return "loading......."
-  //   }
-  //   console.log(data)
+
 
   return (
     <div className="w-3/4 rounded-lg"
