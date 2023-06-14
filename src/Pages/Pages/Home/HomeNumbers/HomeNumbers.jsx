@@ -4,6 +4,7 @@ import { BsNewspaper, BsWalletFill } from "react-icons/bs";
 import "./HomeNumbers.css"
 
 import CountUp from 'react-countup';
+import { Slide } from 'react-awesome-reveal';
 
 const HomeNumbers = () => {
 
@@ -11,7 +12,10 @@ const HomeNumbers = () => {
 
     return (
         <div className='py-20 px-10 my-20 bgImg'>
+            <Slide>
+
             <h3 className='text-3xl text-white text-center mb-10'>Language Master In Number</h3>
+            </Slide>
 
             <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
                 <div className='p-5 border bg-[black] bg-opacity-30 text-white'>

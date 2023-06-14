@@ -4,7 +4,7 @@
 
 # Website name: Language Master
 
-- Some features of this website:
+# Some features of this website:
 --------------------------------
 * This is a full-stack website
 * It has authentication system
@@ -15,7 +15,7 @@
 * A user can see his old payment history also he can sort history by date
 * Home page has dark and light mode toggle button 
 
-- Used packages/ technology 
+# Used packages/ technology 
 ----------------------------
 * React swipper js
 * React router
@@ -26,6 +26,9 @@
 * Axios js
 * Moment js
 * React icons
+* React hook form
+* React helmet
+* React Awesome Reveal
 * Daisy UI along with Tailwind CSS
 * firebase authentication and hosting
 * vercel hosting for backend
