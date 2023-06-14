@@ -29,9 +29,9 @@ const PopularInstructors = () => {
       <div className="mt-20 mb-10 text-center w-9/12 md:w-1/2 mx-auto">
         <Slide>
         <h3 className="text-3xl font-semibold mb-5">Popular Instructors</h3>
-        <p>
+        <p className="max-w-[50vw]">
         {/* <Fade delay={1e3} cascade damping={1e-1}> */}
-        <Fade delay={500} cascade damping={1e-1}>
+        <Fade delay={500} cascade duration={100}>
           Take courses from the world's best instructors and universities.
           {/* Courses include recorded auto-graded and peer-reviewed assignments,
           video lectures, and community discussion forums. */}

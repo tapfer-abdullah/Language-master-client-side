@@ -19,7 +19,7 @@ const PopularCourses = () => {
           <h3 className="text-3xl font-semibold mb-5">Popular Courses</h3>
           <p className="">
             {/* <Fade delay={1e3} cascade damping={1e-1}> */}
-            <Fade delay={500} cascade damping={1e-1}>
+            <Fade delay={500} cascade  duration={100}>
               Take courses from the world's best instructors and universities.
               {/* Courses include recorded auto-graded and peer-reviewed assignments,
           video lectures, and community discussion forums. */}

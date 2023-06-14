@@ -20,28 +20,29 @@ const HomeNumbers = () => {
             <div className='grid grid-cols-2 md:grid-cols-5 gap-4'>
                 <div className='p-5 border bg-[black] bg-opacity-30 text-white'>
                     <LuUsers className='text-5xl mx-auto my-5'></LuUsers>
-                    <p className='flex justify-center text-5xl'><CountUp end={1000} duration={5} className='text-5xl' />+</p>
+                    <p className='flex justify-center text-5xl'>
+                        <CountUp enableScrollSpy end={1000} duration={5} className='text-5xl' />+</p>
                     <p className={pStyle}>STUDENTS</p>
                 </div>
                 <div className='p-5 border bg-[black] bg-opacity-30 text-white'>
                     <LuFolder className='text-5xl mx-auto my-5'></LuFolder>
-                    <p className='flex justify-center text-5xl'><CountUp end={25} duration={5} className='text-5xl' />+</p>
+                    <p className='flex justify-center text-5xl'><CountUp enableScrollSpy  end={25} duration={5} className='text-5xl' />+</p>
                     <p className={pStyle}>LEARNING PROGRAMMES</p>
                 </div>
                 <div className='p-5 border bg-[black] bg-opacity-30 text-white'>
                     <BsWalletFill className='text-5xl mx-auto my-5'></BsWalletFill>
-                    <p className='flex justify-center text-5xl'><CountUp end={15} duration={5} className='text-5xl' />+</p>
+                    <p className='flex justify-center text-5xl'><CountUp enableScrollSpy  end={15} duration={5} className='text-5xl' />+</p>
                     <p className={pStyle}>LANGUAGE TRAININGS</p>
                 </div>
                 <div className='p-5 border bg-[black] bg-opacity-30 text-white'>
                     <BsNewspaper className='text-5xl mx-auto my-5'></BsNewspaper>
-                    <p className='flex justify-center text-5xl'><CountUp end={3} duration={5} className='text-5xl' /></p>
+                    <p className='flex justify-center text-5xl'><CountUp enableScrollSpy  end={3} duration={5} className='text-5xl' /></p>
                     <p className={pStyle}>BRANCHES</p>
                 </div>
                
                 <div className='p-5 border bg-[black] bg-opacity-30 text-white'>
                     <LuGraduationCap className='text-5xl mx-auto my-5'></LuGraduationCap>
-                    <p className='flex justify-center text-5xl'><CountUp end={10} duration={5} className='text-5xl' />+</p>
+                    <p className='flex justify-center text-5xl'><CountUp enableScrollSpy  end={10} duration={5} className='text-5xl' />+</p>
                     <p className={pStyle}>TEACHERS</p>
                     
                 </div>
