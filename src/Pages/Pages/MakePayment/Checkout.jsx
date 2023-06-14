@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import moment from "moment/moment";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const Checkout = ({ data, price }) => {
   const stripe = useStripe();
@@ -118,7 +119,14 @@ const Checkout = ({ data, price }) => {
               });
 
             // alert("Added to DB");
-            alert("Payment Successful!");
+            // alert("Payment Successful!");
+            Swal.fire({
+              position: 'top-center',
+              icon: 'success',
+              title: 'Payment Successful',
+              showConfirmButton: false,
+              timer: 1500
+            })
             navigate("/dashboard/my-selected-classes");
           }
         });

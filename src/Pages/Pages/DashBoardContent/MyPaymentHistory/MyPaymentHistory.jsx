@@ -40,8 +40,8 @@ const MyPaymentHistory = () => {
             <option disabled selected>
               Sort by date
             </option>
-            <option value={1}>Ascending</option>
-            <option value={-1}>Descending</option>
+            <option value={1}>Old to new</option>
+            <option value={-1}>New to old</option>
           </select>
         </div>
 

@@ -8,11 +8,13 @@ import { RotatingLines } from "react-loader-spinner";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthPage/AuthProvider";
+import useCart from "../../../Components/Hooks/useCart";
 
 const Classes = () => {
   const { user } = useContext(AuthContext);
+  const [, refetch] = useCart();
 
-  const { isLoading, isError, data, error, refetch } = useQuery({
+  const { isLoading, data,} = useQuery({
     queryKey: ["instructor"],
     queryFn: async () => {
       const res = await fetch("https://assignment12-server-sepia.vercel.app/courses");
@@ -42,35 +44,34 @@ const Classes = () => {
 
   const select = (data) => {
     // console.log(id);
-    if (!user) {
-      const isConfirm = confirm(
-        "You are not sing in yet! Sing in to select it."
-      );
+    // if (!user) {
+    //   const isConfirm = confirm(
+    //     "You are not sing in yet! Sing in to select it."
+    //   );
 
-      if (isConfirm) {
-        navigate("/login", { state: location, replace: true });
-        return
-      }
+    //   if (isConfirm) {
+    //     navigate("/login", { state: location, replace: true });
+    //     return
+    //   }
+    // }
+
+    if(!user){
+      Swal.fire({
+        title: 'You are not sing in yet!',
+        text: "Sing in to select it.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sing in'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: location, replace: true });
+        }
+      })
     }
-
-    // TODO: this code will be added to poyment page 
-    // fetch(`https://assignment12-server-sepia.vercel.app/course/${data._id}`, {
-    //     method: "PATCH",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({enrolled: data.enrolled+1}),
-    //   })
-    //   .then(res => res.json())
-    //   .then(d => {
-    //     console.log(d)
-    //     if(d.modifiedCount >0){
-    //       alert("Added to DB")
-    //     }
-    //   })
-
-
-    const {name, price, availableSeats, instructor, instructorMail, _id} = data;
+    else{
+      const {name, price, availableSeats, instructor, instructorMail, _id} = data;
       const cart = {email: user.email, oldID: _id, courseName:name, price, availableSeats, instructor, instructorMail, status: "unpaid"}
       console.log(cart)
 
@@ -85,9 +86,18 @@ const Classes = () => {
       .then(d => {
         console.log(d)
         if(d.insertedId){
-          alert("Added successfully")
+          refetch();
+          // alert("Added successfully")
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Added to cart.',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
       })
+    }
   };
 
   return (

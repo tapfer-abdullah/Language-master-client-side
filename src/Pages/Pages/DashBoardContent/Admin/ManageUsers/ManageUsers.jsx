@@ -3,6 +3,7 @@ import React from "react";
 import MUserCart from "./MUserCart";
 import { RotatingLines } from "react-loader-spinner";
 import CustomHelmet from "../../../../../Components/Helmet/CustomHelmet";
+import Swal from "sweetalert2";
 
 const ManageUsers = () => {
   const { isLoading, data, refetch } = useQuery({
@@ -37,7 +38,15 @@ const ManageUsers = () => {
         // console.log(d)
         if(d.modifiedCount){
             refetch()
-          alert("Role updated successfully")
+          // alert("Role updated successfully")
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Role updated successfully.',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          
         }
       })
     }

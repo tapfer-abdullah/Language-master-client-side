@@ -29,11 +29,12 @@ const MClassCart = ({ index, data, handleStatus, handleFeedBack}) => {
           <td>{instructorMail}</td>
           <td>{availableSeats}</td>
           <td className='text-end'>${price}</td>
+          {/* <td>{status}</td> */}
 
-          <th className='flex'>
-            <Link disabled={status == "Denied" || status == "approved"} onClick={()=> handleStatus(_id, "approved")} className="btn btn-outline mx-1 btn-xs">Approved</Link>
-            <Link disabled={status == "Denied" || status == "approved"} onClick={()=> handleStatus(_id, "Denied")} className="btn btn-outline mx-1 btn-xs">Denied</Link>
-            <Link onClick={()=> handleFeedBack(_id)} className="btn btn-outline mx-1 btn-xs">Feed Back</Link>
+          <th className='flex items-center gap-2'>
+            <span className={`${status =="approved" ? "border-4 rounded-xl border-success" : ""}`}><Link disabled={status == "Denied" || status == "approved"} onClick={()=> handleStatus(_id, "approved")} className={` btn btn-outline btn-xs`}>Approved</Link></span>
+            <span className={`${status =="Denied" ? "border-4 rounded-xl border-my-primary" : ""}`}><Link disabled={status == "Denied" || status == "approved"} onClick={()=> handleStatus(_id, "Denied")} className="btn btn-outline btn-xs">Denied</Link></span>
+            <Link onClick={()=> handleFeedBack(_id)} className="btn btn-outline btn-xs">Feed Back</Link>
           </th>
         </tr>
       </>

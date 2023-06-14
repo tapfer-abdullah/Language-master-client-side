@@ -27,11 +27,11 @@ const AddAClass = () => {
     if (availableSeats && classesName && photo && price) {
       setFill(false);
     } else {
-      alert("Fill all the input fields");
+      // alert("Fill all the input fields");
 
       Swal.fire({
         title: "Unable to add!",
-        text: "Fill all the input fields",
+        text: "Fill all the input fields!",
         icon: "warning",
         confirmButtonText: "Okay",
       });
@@ -64,14 +64,21 @@ const AddAClass = () => {
       // console.log(r);
       if(r.insertedId){
         form.reset();
-        alert("Added Successfully")
+        // alert("Added Successfully")
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: 'Added Successfully',
+          showConfirmButton: false,
+          timer: 1500
+        })
       }
 
     })
   };
 
   return (
-    <div>
+    <div className="mb-16">
       <CustomHelmet>Add-A-Class</CustomHelmet>
       <form onSubmit={handleSubmit}
       style={{backgroundImage: "url('https://i.ibb.co/BgVcNZ2/photo-1508615039623-a25605d2b022-ixlib-rb-4-0.jpg')"}}

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import MClassCart from "./MClassCart";
 import CustomHelmet from "../../../../../Components/Helmet/CustomHelmet";
+import Swal from "sweetalert2";
 
 const ManageClasses = () => {
   // const [feedback, setFeedback] = useState("");
@@ -39,18 +40,50 @@ const ManageClasses = () => {
         console.log(d);
         if (d.modifiedCount) {
           refetch();
-          alert("Role updated successfully");
+          // alert("Role updated successfully");
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Approved',
+            showConfirmButton: false,
+            timer: 1500
+          })
+
         }
       });
   };
 
-  const handleFeedBack = (id) => {
+  const handleFeedBack = async(id) => {
     // window.my_modal_3.showModal()
 
-    let text;
-    let message = prompt("Write Feedback:", "");
-    if (message == null || message == "") {
-      text = "User cancelled the prompt.";
+    // let text;
+    // let message = prompt("Write Feedback:", "");
+    // if (message == null || message == "") {
+    //   text = "User cancelled the prompt.";
+    // }
+
+    let message = "";
+    const { value: text } = await Swal.fire({
+      input: 'textarea',
+      inputLabel: 'Give feedback',
+      inputPlaceholder: 'Type your feedback here...',
+      inputAttributes: {
+        'aria-label': 'Type your message here'
+      },
+      showCancelButton: true
+    })
+    
+    if (text) {
+      message = text;
+      Swal.fire({
+        position: 'top-center',
+        icon: 'success',
+        title: 'Feedback added successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }else{
+      return;
     }
 
     // setFeedback(message)
@@ -66,7 +99,14 @@ const ManageClasses = () => {
       .then(d => {
         console.log(d)
         if(d.modifiedCount >0){
-          alert("Feedback added")
+          // alert("Feedback added")
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Feedback added successfully.',
+            showConfirmButton: false,
+            timer: 1500
+          })
         }
       })
 
@@ -82,7 +122,7 @@ const ManageClasses = () => {
       </h3>
 
       <div className="overflow-x-auto mb-20">
-        <table className="table w-[65vw] mx-5">
+        <table className="table w-[69vw] mx-5">
           {/* head */}
           <thead className="rounded-lg">
             <tr className="bg-my-secondary rounded-lg">

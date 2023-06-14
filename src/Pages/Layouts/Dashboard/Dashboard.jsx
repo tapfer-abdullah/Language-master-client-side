@@ -3,7 +3,8 @@ import React from "react";
 import Header from "../../SharedPages/Header";
 import Footer from "../../SharedPages/Footer";
 import { Link, NavLink, Outlet } from "react-router-dom";
-import { FaShoppingCart, FaUser, FaUsers, FaWallet } from "react-icons/fa";
+import { FaAd, FaCheckDouble, FaList, FaListAlt, FaRegListAlt, FaShoppingCart, FaThList, FaUser, FaUsers, FaWallet } from "react-icons/fa";
+import { MdPlaylistAdd } from "react-icons/md";
 import useUser from "../../../Components/Hooks/useUser";
 import CustomHelmet from "../../../Components/Helmet/CustomHelmet";
 
@@ -41,7 +42,7 @@ const Dashboard = () => {
           }
           to="/dashboard/my-selected-classes"
         >
-          <FaShoppingCart></FaShoppingCart>
+          <FaList></FaList>
           {/* <span>{data.length}</span> */}
           My Selected Classes
         </NavLink>
@@ -53,7 +54,7 @@ const Dashboard = () => {
           }
           to="/dashboard/my-enrolled-classes"
         >
-          <FaWallet></FaWallet> My Enrolled Classes
+          <FaCheckDouble></FaCheckDouble> My Enrolled Classes
         </NavLink>
       </li>
 
@@ -81,7 +82,7 @@ const Dashboard = () => {
           }
           to="/dashboard/my-classes"
         >
-          <FaShoppingCart></FaShoppingCart>
+          <FaList></FaList>
           {/* <span>{data.length}</span> */}
           My Classes
         </NavLink>
@@ -93,7 +94,7 @@ const Dashboard = () => {
           }
           to="/dashboard/add-a-class"
         >
-          <FaWallet></FaWallet> Add a class
+          <MdPlaylistAdd className="text-2xl"></MdPlaylistAdd> Add a class
         </NavLink>
       </li>
     </>
@@ -109,7 +110,7 @@ const Dashboard = () => {
           }
           to="/dashboard/classes"
         >
-          <FaShoppingCart></FaShoppingCart>
+          <FaRegListAlt></FaRegListAlt>
           {/* <span>{data.length}</span> */}
           Manage Classes
         </NavLink>

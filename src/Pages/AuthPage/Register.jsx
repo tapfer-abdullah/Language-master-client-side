@@ -57,7 +57,7 @@ const Register = () => {
         .then(d => {
           // console.log("db",d)
           if(d.insertedId){
-            alert("Register success")
+            // alert("Register success")
             Swal.fire({
               title: `Registration successful! Thanks, ${data.name}`,
               showClass: {
@@ -99,7 +99,7 @@ const Register = () => {
         .then(d => {
           console.log("db",d)
           if(d.insertedId){
-            alert("Register success")
+            // alert("Register success")
             Swal.fire({
               title: `Registration successful! Thanks, ${loggedUser.displayName}`,
               showClass: {
@@ -158,7 +158,8 @@ const Register = () => {
       <CustomHelmet>Registration</CustomHelmet>
       <div className="p-5 md:p-28"
       >
-        <div style={{ backgroundRepeat: "no-repeat", backgroundSize: "cover" ,backgroundImage: "url('https://media.istockphoto.com/id/1395240672/vector/blur-gradient-glow-abstract-pastel-background.jpg?s=612x612&w=0&k=20&c=3SoqFDOt681fQY3i_3CweeN9miIZnBYoI6oh9h9DP-k=')"}}
+        <div style={{ backgroundRepeat: "no-repeat", backgroundSize: "cover" 
+        ,backgroundImage: "url('https://photoshopstar.com/media/2015/11285/LF_3.jpg')"}}
           
           className="hero rounded-lg p-5 md:px-20 md:pt-5 md:pb-2 shadow-lg shadow-slate-950/50 "
           //   style={{ backgroundImage: `url(${bgImg})` }}

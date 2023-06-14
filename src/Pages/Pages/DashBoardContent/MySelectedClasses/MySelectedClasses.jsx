@@ -6,42 +6,84 @@ import { AuthContext } from "../../../AuthPage/AuthProvider";
 import { RotatingLines } from "react-loader-spinner";
 import useCart from "../../../../Components/Hooks/useCart";
 import CustomHelmet from "../../../../Components/Helmet/CustomHelmet";
+import Swal from "sweetalert2";
 
 const MySelectedClasses = () => {
-  const {user, loading} = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
-  const [cart, refetch , isLoading] = useCart();
+  const [cart, refetch, isLoading] = useCart();
   // const total = cart.reduce((sum, item) => sum + item.price, 0);
 
-   const CardData = createContext(cart || 0);
+  const CardData = createContext(cart || 0);
 
   // console.log(data);
-  if (isLoading) return <RotatingLines
-  strokeColor="#ff5161"
-  strokeWidth="5"
-  animationDuration="0.75"
-  width="96"
-  visible={true}
-/>
+  if (isLoading)
+    return (
+      <RotatingLines
+        strokeColor="#ff5161"
+        strokeWidth="5"
+        animationDuration="0.75"
+        width="96"
+        visible={true}
+      />
+    );
 
   const handleDelete = (id) => {
     console.log(id);
 
-    const isDelete = confirm("Are you sure to delete it? If yes, click ok!");
+    // const isDelete = confirm("Are you sure to delete it? If yes, click ok!");
 
-    if(isDelete){
-      fetch(`https://assignment12-server-sepia.vercel.app/course/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((d) => {
-        console.log(d);
-        if(d.deletedCount){
-          refetch()
-          alert("Deleted successfully")
-        }
-      });
-    }
+    Swal.fire({
+      title: "Are you sure to delete it?",
+      text: "It will be deleted permanently",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://assignment12-server-sepia.vercel.app/course/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((d) => {
+            console.log(d);
+            if (d.deletedCount) {
+              refetch();
+              // alert("Deleted successfully")
+              Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Deleted successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
+      }
+    });
+
+    // if(isDelete){
+    //   fetch(`https://assignment12-server-sepia.vercel.app/course/${id}`, {
+    //   method: "DELETE",
+    // })
+    //   .then((res) => res.json())
+    //   .then((d) => {
+    //     console.log(d);
+    //     if(d.deletedCount){
+    //       refetch()
+    //       // alert("Deleted successfully")
+    //       Swal.fire({
+    //         position: 'top-center',
+    //         icon: 'success',
+    //         title: 'Deleted successfully',
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       })
+    //     }
+    //   });
+    // }
   };
 
   return (

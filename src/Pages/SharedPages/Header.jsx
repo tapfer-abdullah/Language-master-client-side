@@ -14,13 +14,6 @@ const Header = () => {
   const [cart] = useCart();
   // console.log("header", cart);
 
-  const [loggedUser, refetch] = useUser();
-
-  const [show , setShow]= useState((loggedUser?.designation == 'Student'));
-
-
-  // console.log(show)
-
   // console.log(user)
   const handleLogout = () => {
     Logout()
@@ -107,9 +100,8 @@ const Header = () => {
             >
               {menu}
               {user && conditionalMenu}
-              {show && (
               <NavLink
-              to="/dashboard/my-selected-classes"
+                to="/dashboard/my-selected-classes"
                 className={({ isActive }) =>
                   isActive
                     ? "text-[black] bg-white text-lg font-semibold btn bg-transparent"
@@ -120,7 +112,6 @@ const Header = () => {
                 <FaShoppingCart className=" "></FaShoppingCart>
                 <div className="badge badge-secondary">{cart?.length || 0}</div>
               </NavLink>
-            )}
             </ul>
           </div>
           <Link
@@ -135,20 +126,18 @@ const Header = () => {
           <ul className="flex items-center menu menu-horizontal px-1 text-base font-semibold">
             {menu}
             {user && conditionalMenu}
-            {show && (
-              <NavLink
+            <NavLink
               to="/dashboard/my-selected-classes"
-                className={({ isActive }) =>
-                  isActive
-                    ? "text-[black] bg-white text-lg font-semibold btn bg-transparent"
-                    : "btn bg-transparent hover:text-[black] text-white"
-                }
-                //  className="btn bg-transparent hover:text-[black] text-white"
-              >
-                <FaShoppingCart className=" "></FaShoppingCart>
-                <div className="badge badge-secondary">{cart?.length || 0}</div>
-              </NavLink>
-            )}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-[black] bg-white text-lg font-semibold btn bg-transparent"
+                  : "btn bg-transparent hover:text-[black] text-white"
+              }
+              //  className="btn bg-transparent hover:text-[black] text-white"
+            >
+              <FaShoppingCart className=" "></FaShoppingCart>
+              <div className="badge badge-secondary">{cart?.length || 0}</div>
+            </NavLink>
             {/* {conditionalMenu} */}
           </ul>
         </div>

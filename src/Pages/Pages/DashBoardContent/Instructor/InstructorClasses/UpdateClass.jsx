@@ -33,7 +33,7 @@ const UpdateClass = () => {
       if (availableSeats && classesName && photo && price) {
         setFill(false);
       } else {
-        alert("Fill all the input fields");
+        // alert("Fill all the input fields");
   
         Swal.fire({
           title: "Unable to add!",
@@ -71,7 +71,14 @@ const UpdateClass = () => {
         if(r.modifiedCount >0){
         //   form.reset();
         navigate("/dashboard/my-classes");
-          alert("Updated Successfully")
+          // alert("Updated Successfully")
+          Swal.fire({
+            position: 'top-center',
+            icon: 'success',
+            title: 'Updated Successfully',
+            showConfirmButton: false,
+            timer: 1500
+          })
 
         }
   
@@ -79,7 +86,7 @@ const UpdateClass = () => {
     };
   
     return (
-      <div>
+      <div className='mb-16'>
         <CustomHelmet>Update-Class</CustomHelmet>
         <form onSubmit={handleSubmit}
         style={{backgroundImage: "url('https://i.ibb.co/BgVcNZ2/photo-1508615039623-a25605d2b022-ixlib-rb-4-0.jpg')"}}
