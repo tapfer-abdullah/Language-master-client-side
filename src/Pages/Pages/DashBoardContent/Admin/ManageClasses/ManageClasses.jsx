@@ -10,7 +10,7 @@ const ManageClasses = () => {
   const { isLoading, data, refetch } = useQuery({
     queryKey: ["allClasses"],
     queryFn: () =>
-      fetch("http://localhost:5000/classes").then((res) => res.json()),
+      fetch("https://assignment12-server-sepia.vercel.app/classes").then((res) => res.json()),
   });
 
   if (isLoading)
@@ -27,7 +27,7 @@ const ManageClasses = () => {
   const handleStatus = (id, status) => {
     const info = { status };
 
-    fetch(`http://localhost:5000/class/${id}`, {
+    fetch(`https://assignment12-server-sepia.vercel.app/class/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +55,7 @@ const ManageClasses = () => {
 
     // setFeedback(message)
 
-    fetch(`http://localhost:5000/course-feedback/${id}`, {
+    fetch(`https://assignment12-server-sepia.vercel.app/course-feedback/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

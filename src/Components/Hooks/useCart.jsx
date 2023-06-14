@@ -9,7 +9,7 @@ const useCart = () => {
     const { isLoading, data: cart, refetch } = useQuery({
         queryKey: ["repoData"],
         queryFn: () =>
-          fetch(`http://localhost:5000/my-selected-course?email=${user?.email}&status=unpaid`, {
+          fetch(`https://assignment12-server-sepia.vercel.app/my-selected-course?email=${user?.email}&status=unpaid`, {
             headers: {
               authorization: `bearer ${token}`
             }

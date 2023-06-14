@@ -30,7 +30,8 @@ const router = createBrowserRouter([
     children: [
         {
             path: "/",
-            element: <Home></Home>
+            element: <Home></Home>,
+            errorElement: <PageNotFound></PageNotFound>,
         },
         {
             path: "/instructors",
@@ -53,15 +54,17 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+    errorElement: <PageNotFound></PageNotFound>,
     children: [
       {
         path: "/dashboard",
-        element: <PrivateRoute><DashBoardContent></DashBoardContent></PrivateRoute>
+        element: <PrivateRoute><DashBoardContent></DashBoardContent></PrivateRoute>,
+        errorElement: <PageNotFound></PageNotFound>,
       },
       {
         path: "checkout/:id",
         element: <PrivateUser><Payment></Payment></PrivateUser>,
-        // loader: ({params}) => fetch(`http://localhost:5000/single-cart/${params.id}`)
+        // loader: ({params}) => fetch(`https://assignment12-server-sepia.vercel.app/single-cart/${params.id}`)
       },
       {
         path: "my-selected-classes",
@@ -94,7 +97,7 @@ const router = createBrowserRouter([
       {
         path: "/dashboard/my-classes/:id",
         element: <PrivateInstructor><UpdateClass></UpdateClass></PrivateInstructor>,
-        loader: ({params}) => fetch(`http://localhost:5000/class/${params.id}`)
+        loader: ({params}) => fetch(`https://assignment12-server-sepia.vercel.app/class/${params.id}`)
       },
     ]
   }

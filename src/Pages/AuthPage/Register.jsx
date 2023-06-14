@@ -45,7 +45,7 @@ const Register = () => {
 
         const newUser = {name: data.name, email: data.email, photo: data.photoUrl, designation: "Student" };
 
-        fetch("http://localhost:5000/user",{
+        fetch("https://assignment12-server-sepia.vercel.app/user",{
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -87,7 +87,7 @@ const Register = () => {
       const loggedUser = result.user;
       const newUser = {name: loggedUser.displayName, email: loggedUser.email, photo: loggedUser.photoURL, designation: "Student" };
 
-        fetch("http://localhost:5000/user",{
+        fetch("https://assignment12-server-sepia.vercel.app/user",{
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -23,7 +23,7 @@ const Checkout = ({ data, price }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://assignment12-server-sepia.vercel.app/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ price: price }),
@@ -84,7 +84,7 @@ const Checkout = ({ data, price }) => {
     }
 
     if (paymentIntent?.status == "succeeded") {
-      fetch(`http://localhost:5000/course/${data.oldID}`, {
+      fetch(`https://assignment12-server-sepia.vercel.app/course/${data.oldID}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -105,7 +105,7 @@ const Checkout = ({ data, price }) => {
               time,
             };
 
-            fetch(`http://localhost:5000/payment-history/${data.email}`, {
+            fetch(`https://assignment12-server-sepia.vercel.app/payment-history/${data.email}`, {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

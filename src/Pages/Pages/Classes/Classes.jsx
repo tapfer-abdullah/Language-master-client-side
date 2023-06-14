@@ -15,7 +15,7 @@ const Classes = () => {
   const { isLoading, isError, data, error, refetch } = useQuery({
     queryKey: ["instructor"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/courses");
+      const res = await fetch("https://assignment12-server-sepia.vercel.app/courses");
       // console.log(data)
       return res.json();
     },
@@ -54,7 +54,7 @@ const Classes = () => {
     }
 
     // TODO: this code will be added to poyment page 
-    // fetch(`http://localhost:5000/course/${data._id}`, {
+    // fetch(`https://assignment12-server-sepia.vercel.app/course/${data._id}`, {
     //     method: "PATCH",
     //     headers: {
     //       "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const Classes = () => {
       const cart = {email: user.email, oldID: _id, courseName:name, price, availableSeats, instructor, instructorMail, status: "unpaid"}
       console.log(cart)
 
-      fetch(`http://localhost:5000/course/${user.email}`, {
+      fetch(`https://assignment12-server-sepia.vercel.app/course/${user.email}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

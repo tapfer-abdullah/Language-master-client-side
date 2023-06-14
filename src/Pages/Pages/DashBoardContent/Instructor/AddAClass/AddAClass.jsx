@@ -52,7 +52,7 @@ const AddAClass = () => {
 
     console.log(newClass);
 
-    fetch("http://localhost:5000/add-class", {
+    fetch("https://assignment12-server-sepia.vercel.app/add-class", {
       method: "POST",
       headers: {
         "Content-Type" : "application/json"

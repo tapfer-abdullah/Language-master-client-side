@@ -8,7 +8,7 @@ const PopularCourses = () => {
   const [pData, setPData] = useState([]);
 
   useEffect(()=>{
-    fetch("http://localhost:5000/courses?sort=-1")
+    fetch("https://assignment12-server-sepia.vercel.app/courses?sort=-1")
   .then(res => res.json())
   .then(data => setPData(data));
   },[])

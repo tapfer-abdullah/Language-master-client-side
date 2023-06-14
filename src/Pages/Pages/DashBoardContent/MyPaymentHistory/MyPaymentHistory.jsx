@@ -7,11 +7,11 @@ import { AuthContext } from "../../../AuthPage/AuthProvider";
 
 const MyPaymentHistory = () => {
   const { user } = useContext(AuthContext);
-  const [sortOP, setSortOp] = useState(1);
+  const [sortOP, setSortOp] = useState(-1);
   const [paymentCart, setPaymentCart] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/payment-history/${user?.email}`, {
+    fetch(`https://assignment12-server-sepia.vercel.app/payment-history/${user?.email}`, {
       method: "GET",
       headers: {
         sort: sortOP,

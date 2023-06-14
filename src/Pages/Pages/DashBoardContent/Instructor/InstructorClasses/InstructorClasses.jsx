@@ -1,17 +1,20 @@
 /* eslint-disable no-unused-vars */
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { RotatingLines } from 'react-loader-spinner';
 import ICCard from './ICCard';
 import UpdateClass from './UpdateClass';
 import CustomHelmet from '../../../../../Components/Helmet/CustomHelmet';
+import { AuthContext } from '../../../../AuthPage/AuthProvider';
 
 const InstructorClasses = () => {
     const [feedback, setFeedback] = useState("");
+    const {user} = useContext(AuthContext);
+
   const { isLoading, data, refetch } = useQuery({
     queryKey: ["allClasses"],
     queryFn: () =>
-      fetch("http://localhost:5000/classes").then((res) => res.json()),
+      fetch(`https://assignment12-server-sepia.vercel.app/classes/${user?.email}`).then((res) => res.json()),
   });
 
   if (isLoading)

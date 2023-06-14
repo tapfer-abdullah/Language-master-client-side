@@ -13,7 +13,7 @@ const useUser = () => {
   } = useQuery({
     queryKey: ["loggedUser"],
     queryFn: () =>
-      fetch(`http://localhost:5000/check-user/${user?.email}`, {
+      fetch(`https://assignment12-server-sepia.vercel.app/check-user/${user?.email}`, {
         headers: {
           authorization: `bearer ${token}`,
         },

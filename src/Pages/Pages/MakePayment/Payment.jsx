@@ -14,7 +14,7 @@ const Payment = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/single-cart/${params.id}`)
+      .get(`https://assignment12-server-sepia.vercel.app/single-cart/${params.id}`)
       .then(function (response) {
         // handle success
         //   console.log(response.data);

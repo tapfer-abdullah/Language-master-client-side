@@ -8,7 +8,7 @@ const ManageUsers = () => {
   const { isLoading, data, refetch } = useQuery({
     queryKey: ["allUsers"],
     queryFn: () =>
-      fetch("http://localhost:5000/users").then((res) => res.json()),
+      fetch("https://assignment12-server-sepia.vercel.app/users").then((res) => res.json()),
   });
 
   if (isLoading)
@@ -25,7 +25,7 @@ const ManageUsers = () => {
     const handleRole = (email, role)=>{
         const info = {role};
 
-        fetch(`http://localhost:5000/user/${email}`, {
+        fetch(`https://assignment12-server-sepia.vercel.app/user/${email}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

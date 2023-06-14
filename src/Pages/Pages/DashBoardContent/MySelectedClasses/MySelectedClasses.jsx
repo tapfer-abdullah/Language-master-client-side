@@ -30,7 +30,7 @@ const MySelectedClasses = () => {
     const isDelete = confirm("Are you sure to delete it? If yes, click ok!");
 
     if(isDelete){
-      fetch(`http://localhost:5000/course/${id}`, {
+      fetch(`https://assignment12-server-sepia.vercel.app/course/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

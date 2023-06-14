@@ -59,7 +59,7 @@ const Login = () => {
           designation: "Student",
         };
 
-        fetch("http://localhost:5000/user", {
+        fetch("https://assignment12-server-sepia.vercel.app/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

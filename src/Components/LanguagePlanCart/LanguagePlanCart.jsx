@@ -50,7 +50,10 @@ const LanguagePlanCart = ({ data, select }) => {
     photo = noImg;
   }
 
-  const show = (loggedUser?.designation != 'Student' || !(availableSeats - enrolled))
+  let show = (loggedUser?.designation != 'Student' || !(availableSeats - enrolled));
+  if(!loggedUser && (availableSeats - enrolled)){
+    show = false;
+  }
 
   return (
     <div className="my-3">

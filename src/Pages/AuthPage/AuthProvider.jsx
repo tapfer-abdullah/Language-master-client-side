@@ -19,7 +19,7 @@ const AuthProvider = ({children}) => {
             if(loggedUser){
                 setUser(loggedUser);
 
-                axios.post('http://localhost:5000/jwt', {loggedUser})
+                axios.post('https://assignment12-server-sepia.vercel.app/jwt', {loggedUser})
                   .then(function (response) {
                     console.log(response.data);
                     localStorage.setItem("access-token", response.data);

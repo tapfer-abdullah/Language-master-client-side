@@ -9,7 +9,7 @@ const PopularInstructors = () => {
   const { isLoading, isError, data, error, refetch } = useQuery({
     queryKey: ["instructor"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/instructors");
+      const res = await fetch("https://assignment12-server-sepia.vercel.app/instructors");
       return res.json();
     },
   });

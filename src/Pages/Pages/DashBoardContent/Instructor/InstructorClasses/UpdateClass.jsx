@@ -58,7 +58,7 @@ const UpdateClass = () => {
   
     //   console.log(newClass);
   
-      fetch(`http://localhost:5000/update-class/${params.id}`, {
+      fetch(`https://assignment12-server-sepia.vercel.app/update-class/${params.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type" : "application/json"

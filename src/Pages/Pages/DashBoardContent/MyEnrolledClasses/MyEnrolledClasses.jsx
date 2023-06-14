@@ -13,7 +13,7 @@ const MyEnrolledClasses = () => {
     const { isLoading, data, refetch } = useQuery({
         queryKey: ['repoData', 'loading'],
         queryFn: () =>
-          fetch(`http://localhost:5000/my-selected-course?email=${user?.email}&status=paid`, {
+          fetch(`https://assignment12-server-sepia.vercel.app/my-selected-course?email=${user?.email}&status=paid`, {
             headers: {
               authorization: `bearer ${token}`
             }
